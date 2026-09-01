@@ -68,14 +68,28 @@ This site pre-existed and was mostly AI-generated without a fact-check pass. Fou
    during the audit — it's plausible (matches the ambition in his original fellowship proposal) but
    unconfirmed. Ask Andrew to confirm the numbers are real before treating this page as fully trusted.
    Its "to be added" figure placeholders are honest, not a bug — leave them until real figures exist.
-3. **This repo needs to be pushed and Pages enabled.** See below — this is the actual first task.
+3. ~~This repo needs to be pushed and Pages enabled.~~ **Done 2026-09-01.** The site is live at
+   `https://amcgallian.github.io`. See "Publishing" below for what actually happened — it initially
+   went out under the wrong repo name and had to be fixed.
 
-## Publishing — do this first
+## Publishing — done, but read this if anything looks broken again
 
-**The repo must be created on GitHub as exactly `amcgallian.github.io`.** Every internal link on this
-site is an absolute path (`/style.css`, `/projects/`, etc.), built assuming it serves from a domain
-root. Any other repo name means GitHub Pages serves it at `amcgallian.github.io/<reponame>/` instead,
-and every link on the site breaks.
+**The repo must be named exactly `amcgallian.github.io`.** Every internal link on this site is an
+absolute path (`/style.css`, `/projects/`, etc.), built assuming it serves from a domain root. Any
+other repo name means GitHub Pages serves it at `amcgallian.github.io/<reponame>/` instead, and every
+link on the site breaks (unstyled page, default browser link colors — that's the tell).
+
+**This actually happened on 2026-09-01:** the repo was first created as `amcgallian/portfolio-site`,
+which broke every link on the live site. Fixed by renaming the repo in place (GitHub Settings →
+General → Repository name → `amcgallian.github.io`) rather than deleting/recreating — this preserves
+history and GitHub auto-detects the user-site naming pattern. The local git remote was then repointed
+with `git remote set-url origin https://github.com/amcgallian/amcgallian.github.io.git`. Note: unlike
+the repo page itself, Pages URLs do **not** auto-redirect from the old name — `/portfolio-site/` now
+404s, so that URL should never be given out anywhere (resumes, LinkedIn, etc.) — the correct link is
+`https://amcgallian.github.io`. Added a root `.nojekyll` at the same time since Pages now serves from
+the domain root — cheap insurance against Jekyll processing this static site unexpectedly.
+
+Original steps, for reference if the repo ever needs to be recreated from scratch:
 
 ```bash
 # 1. Create the repo at github.com/new — name: amcgallian.github.io, public, no README
