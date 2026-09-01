@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UChicago Dissertations 1893–2025 — Andrew McGallian</title>
+  <meta name="description" content="Interactive visualization of 132 years and 32,000 dissertations at the University of Chicago.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="/" class="nav-brand">Andrew McGallian</a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/projects/" class="active">Projects</a></li>
+      <li><a href="/research/">Research</a></li>
+      <li><a href="/courses/">Courses</a></li>
+      <li><a href="/about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <header class="page-hero">
+    <div class="page-hero-inner">
+      <a href="/projects/" class="back-link">← Projects</a>
+      <p class="eyebrow">Data Visualization Fellowship · Cohort Project · 2025–2026</p>
+      <h1>Visualizing UChicago Dissertations, 1893–2025</h1>
+      <p class="subtitle">
+        Interactive four-panel visualization exploring 132 years and ~32,000 dissertations at the
+        University of Chicago — mapping how research topics, disciplines, and global focus have
+        evolved across campus and across the world.
+      </p>
+      <div class="meta-row">
+        <span class="meta-item">
+          <span class="label">Dataset</span>
+          ~32,000 dissertations
+        </span>
+        <span class="meta-item">
+          <span class="label">Timespan</span>
+          1893–2025
+        </span>
+        <span class="meta-item">
+          <span class="label">Context</span>
+          CDS Fellowship cohort project
+        </span>
+      </div>
+      <div class="hero-actions">
+      </div>
+    </div>
+  </header>
+
+  <main class="site-main">
+    <div style="display:grid; grid-template-columns: 1fr 290px; gap: 52px; align-items: start;">
+
+      <div class="prose">
+
+        <h2>Overview</h2>
+        <p>
+          The University of Chicago has granted doctoral degrees since 1893. This project asks:
+          what can 132 years of dissertation titles, abstracts, and department affiliations tell us
+          about how a research university's intellectual character changes over time?
+        </p>
+        <p>
+          Working from a ~32,000-record dataset assembled from ProQuest TDM Studio, the UChicago
+          Library archive, convocation records, and Hathi Trust digitized materials, the project
+          builds a GIS pipeline and interactive four-tab visualization that explores the data
+          from campus geography, global research focus, interdisciplinary networks, and a novel
+          "ring species" methodology adapted from evolutionary biology.
+        </p>
+
+        <div class="callout blue">
+          <p class="callout-title">Fellowship Cohort Project</p>
+          <p>
+            Developed as the cohort project for the 2025–2026 Data Visualization Fellowship at
+            the UChicago Center for Digital Scholarship. <a href="/research/fellowship/">View the fellowship →</a>
+          </p>
+        </div>
+
+        <h2>Data Pipeline</h2>
+
+        <h3>Dataset Assembly</h3>
+        <p>
+          ~32,000 records assembled from four sources:
+        </p>
+        <ul>
+          <li><strong>ProQuest TDM Studio</strong> — bulk dissertation metadata (titles, abstracts, keywords, authors)</li>
+          <li><strong>UChicago Library archive</strong> — supplementary descriptive fields</li>
+          <li><strong>Convocation records</strong> — historical graduation data to fill department gaps</li>
+          <li><strong>Hathi Trust</strong> — early dissertation recovery (1893–1931)</li>
+        </ul>
+
+        <h3>Department Normalization</h3>
+        <p>
+          156 unique department strings across 132 years were normalized to 42 canonical modern
+          departments via an explicit mapping table — accounting for historical renames, joint
+          programs, and administrative reorganizations (e.g., Harris School, Pritzker Molecular
+          Engineering). The mapping rationale is documented per entry.
+        </p>
+
+        <h3>Geographic Entity Extraction (NLP)</h3>
+        <p>
+          Named entity recognition via <strong>spaCy</strong> (<code>en_core_web_lg</code>) extracted
+          geographic place names (GPE entities) from titles, subject terms, and keywords. This
+          identified 1,112 unique locations and assigned a primary geographic research focus to
+          4,068 records (12.7% of the dataset). Top countries: United States (293 dissertations),
+          China (193), France (122), United Kingdom (119).
+        </p>
+        <p>
+          Extracted locations were geocoded via the Nominatim API (OpenStreetMap) to latitude/longitude
+          for the global choropleth visualization.
+        </p>
+
+        <h3>Campus GIS</h3>
+        <p>
+          Departments were mapped to their primary campus buildings using a building locations table
+          joined to UChicago property footprint geometries (February 2025). This spatially resolved
+          6,310 of 32,013 dissertations to specific campus buildings — enabling a choropleth of
+          dissertation output by building.
+        </p>
+
+        <h2>Visualizations</h2>
+        <p>
+          The interactive visualization presents four analytical perspectives in a tabbed interface:
+        </p>
+
+        <div class="skills-list">
+          <div class="skill-item">
+            <div class="skill-dot"></div>
+            <div>
+              <div class="skill-name">Tab 1 — Campus Choropleth</div>
+              <div class="skill-note">Building polygon map of campus colored by dissertation count, with an animated year slider (1959–2025). Reveals how research has shifted spatially across campus over time.</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-dot"></div>
+            <div>
+              <div class="skill-name">Tab 2 — Global Research Focus</div>
+              <div class="skill-note">World choropleth showing where UChicago dissertations study — filterable by decade. Shows the university's evolving geographic scope from a US-centric to globally distributed research agenda.</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-dot"></div>
+            <div>
+              <div class="skill-name">Tab 3 — Interdisciplinary Trends</div>
+              <div class="skill-note">Line chart of joint dissertation rate over time, stacked bar by division, top 15 department pairs table, and a campus connection map with arc weights proportional to collaboration count.</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-dot"></div>
+            <div>
+              <div class="skill-name">Tab 4 — Ring Species Analysis</div>
+              <div class="skill-note">A novel methodology adapted from evolutionary biology: 41 departments arranged clockwise by campus geography, with edges colored by TF-IDF keyword similarity. Tests whether physical proximity predicts intellectual overlap. Scatter plot: spatial distance vs. keyword similarity for all department pairs. Keyword explorer shows TF-IDF top terms per department.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout amber">
+          <p class="callout-title">Ring Species — Novel Methodology</p>
+          <p>
+            In evolutionary biology, a "ring species" is a connected series of populations where
+            neighbors can interbreed but the terminal ends of the ring cannot. Applied here:
+            departments are arranged as a geographic ring, and we test whether adjacent departments
+            are more intellectually similar (higher keyword overlap) than distant ones — and identify
+            the "break point" where the ring's intellectual continuity fails.
+          </p>
+        </div>
+
+        <h2>Technical Implementation</h2>
+        <p>
+          The GIS pipeline is organized into four Python scripts: <code>dept_housing.py</code>
+          (department normalization + building join), <code>geo_ripper.py</code> (NLP entity
+          extraction + Nominatim geocoding), <code>fill_departments.py</code> (convocation record
+          cross-referencing), and <code>prepare_viz_data.py</code> (pre-computes all visualization
+          datasets into a single 183 KB JavaScript bundle).
+        </p>
+        <p>
+          The front-end visualization is built in vanilla JavaScript with Leaflet for the spatial
+          views and Chart.js for the statistical charts — no framework, no build step.
+        </p>
+
+        <div class="figure-placeholder">[ Figure: Campus choropleth — dissertations by building — to be added ]</div>
+        <div class="figure-placeholder">[ Figure: Global research focus choropleth — to be added ]</div>
+        <div class="figure-placeholder">[ Figure: Ring species diagram — to be added ]</div>
+
+      </div>
+
+      <!-- Sidebar -->
+      <aside style="display:flex; flex-direction:column; gap:20px; position:sticky; top:84px;">
+
+        <div style="background:var(--paper-0); border:1px solid var(--border); border-radius:var(--panel-radius); padding:18px 20px;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; letter-spacing:0.10em; text-transform:uppercase; color:var(--ink-4); margin-bottom:14px;">Tech Stack</div>
+          <div class="tech-stack" style="flex-direction:column; gap:6px; margin:0;">
+            <div class="tech-item">Python · pandas</div>
+            <div class="tech-item">spaCy (NER)</div>
+            <div class="tech-item">GeoPandas · Nominatim</div>
+            <div class="tech-item">TF-IDF (scikit-learn)</div>
+            <div class="tech-item">Leaflet (maps)</div>
+            <div class="tech-item">Chart.js</div>
+            <div class="tech-item">Vanilla JS</div>
+          </div>
+        </div>
+
+        <div style="background:var(--paper-0); border:1px solid var(--border); border-radius:var(--panel-radius); padding:18px 20px;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; letter-spacing:0.10em; text-transform:uppercase; color:var(--ink-4); margin-bottom:14px;">Scale</div>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div>
+              <div style="font-family:'IBM Plex Mono',monospace; font-size:20px; font-weight:600; color:var(--ink-0);">32,000</div>
+              <div style="font-size:11px; color:var(--ink-4);">dissertation records</div>
+            </div>
+            <div>
+              <div style="font-family:'IBM Plex Mono',monospace; font-size:20px; font-weight:600; color:var(--ink-0);">132</div>
+              <div style="font-size:11px; color:var(--ink-4);">years of data (1893–2025)</div>
+            </div>
+            <div>
+              <div style="font-family:'IBM Plex Mono',monospace; font-size:20px; font-weight:600; color:var(--ink-0);">1,112</div>
+              <div style="font-size:11px; color:var(--ink-4);">unique global locations extracted</div>
+            </div>
+            <div>
+              <div style="font-family:'IBM Plex Mono',monospace; font-size:20px; font-weight:600; color:var(--ink-0);">42</div>
+              <div style="font-size:11px; color:var(--ink-4);">canonical departments</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:var(--paper-0); border:1px solid var(--border); border-radius:var(--panel-radius); padding:18px 20px;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; letter-spacing:0.10em; text-transform:uppercase; color:var(--ink-4); margin-bottom:10px;">See Also</div>
+          <a href="/research/fellowship/" style="font-size:13px; font-weight:500; color:var(--blue); display:block; margin-bottom:6px;">Data Visualization Fellowship →</a>
+          <a href="/projects/chicago-atlas/" style="font-size:13px; font-weight:500; color:var(--blue);">Chicago Environmental Atlas →</a>
+        </div>
+
+      </aside>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <a href="/" class="footer-brand">Andrew McGallian</a>
+      <div class="footer-links">
+        <a href="/projects/">Projects</a>
+        <a href="/research/">Research</a>
+        <a href="/courses/">Courses</a>
+        <a href="/about.html">About</a>
+      </div>
+    </div>
+    <div class="footer-inner" style="margin-top:8px;">
+      <span class="footer-copy">University of Chicago &middot; M.S. Candidate &middot; Data Visualization Fellow</span>
+    </div>
+  </footer>
+
+</body>
+</html>

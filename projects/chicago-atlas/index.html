@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chicago Environmental Atlas — Andrew McGallian</title>
+  <meta name="description" content="A Flask web app mapping 150 years of Chicago environmental change, built for the UChicago Data Visualization Fellowship.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="/" class="nav-brand">Andrew McGallian</a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/projects/" class="active">Projects</a></li>
+      <li><a href="/research/">Research</a></li>
+      <li><a href="/courses/">Courses</a></li>
+      <li><a href="/about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <header class="page-hero">
+    <div class="page-hero-inner">
+      <a href="/projects/" class="back-link">← Projects</a>
+      <p class="eyebrow">Full-Stack Web App · UChicago Center for Digital Scholarship</p>
+      <h1>Chicago Environmental Atlas</h1>
+      <p class="subtitle">
+        A Flask web application mapping 150 years of Chicago environmental change — land surface
+        temperature, vegetation, hydrology, and biodiversity — built for the Data Visualization
+        Fellowship.
+      </p>
+      <div class="meta-row">
+        <span class="meta-item">
+          <span class="label">Coverage</span>
+          1870 – 2025
+        </span>
+        <span class="meta-item">
+          <span class="label">Stack</span>
+          Flask · Docker · Leaflet · Vega-Lite
+        </span>
+        <span class="meta-item">
+          <span class="label">Data</span>
+          ~10 GB processed
+        </span>
+      </div>
+      <div class="hero-actions">
+        <a href="https://github.com/amcgallian" class="btn btn-primary">GitHub →</a>
+      </div>
+      <p style="font-size:13px; color:var(--ink-4); margin-top:10px;">
+        Currently self-hosted and offline between demos — a walkthrough recording is linked below.
+      </p>
+    </div>
+  </header>
+
+  <main class="site-main">
+    <div style="display:grid; grid-template-columns: 1fr 280px; gap: 52px; align-items: start;">
+
+      <div class="prose">
+
+        <h2>Overview</h2>
+        <p>
+          The atlas layers historical maps, Landsat satellite imagery, and public environmental
+          datasets onto a single interactive map, with a timeline slider that drives every layer to
+          the selected date at once. Vector layers — historical city boundaries, waterways, species
+          observations, water quality, and weather stations — filter to match, while Landsat rasters
+          swap between land surface temperature and vegetation index tiles.
+        </p>
+        <p>
+          Getting there meant georeferencing historical Chicago boundaries by decade back to 1870
+          and assembling Landsat coverage across five decades into a consistent, analysis-ready set
+          of tiles — most of the actual work behind the project.
+        </p>
+
+        <h2>Features</h2>
+        <div class="skills-list">
+          <div class="skill-item">
+            <div class="skill-dot"></div>
+            <div>
+              <div class="skill-name">Timeline-driven map</div>
+              <div class="skill-note">Scrub from 1870–2025; Landsat rasters and vector layers update together to the selected date.</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-dot"></div>
+            <div>
+              <div class="skill-name">Analysis panel</div>
+              <div class="skill-note">Vega-Lite charts (histogram + time series) alongside the map, with a draw-your-own-area tool for regional summaries.</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-dot"></div>
+            <div>
+              <div class="skill-name">Data portal</div>
+              <div class="skill-note">Searchable layer cards with citations, temporal coverage, and GeoJSON downloads for every dataset.</div>
+            </div>
+          </div>
+        </div>
+
+        <h2>Deployment</h2>
+        <p>
+          Packaged with Docker Compose for a reproducible build. Presently self-hosted rather than
+          running on a paid always-on server — a recorded walkthrough is the reliable way to see it
+          working until that changes.
+        </p>
+
+      </div>
+
+      <aside style="display:flex; flex-direction:column; gap:20px; position:sticky; top:84px;">
+
+        <div style="background:var(--paper-0); border:1px solid var(--border); border-radius:var(--panel-radius); padding:18px 20px;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; letter-spacing:0.10em; text-transform:uppercase; color:var(--ink-4); margin-bottom:14px;">Tech Stack</div>
+          <div class="tech-stack" style="flex-direction:column; gap:6px; margin:0;">
+            <div class="tech-item">Python / Flask</div>
+            <div class="tech-item">GeoPandas</div>
+            <div class="tech-item">Docker</div>
+            <div class="tech-item">Leaflet</div>
+            <div class="tech-item">Vega-Lite</div>
+          </div>
+        </div>
+
+        <div style="background:var(--paper-0); border:1px solid var(--border); border-radius:var(--panel-radius); padding:18px 20px;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; letter-spacing:0.10em; text-transform:uppercase; color:var(--ink-4); margin-bottom:14px;">Topics</div>
+          <div class="tag-row">
+            <span class="tag blue">Web GIS</span>
+            <span class="tag blue">Remote sensing</span>
+            <span class="tag">Full-stack</span>
+            <span class="tag">Docker</span>
+            <span class="tag">Landsat</span>
+          </div>
+        </div>
+
+      </aside>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <a href="/" class="footer-brand">Andrew McGallian</a>
+      <div class="footer-links">
+        <a href="/projects/">Projects</a>
+        <a href="/research/">Research</a>
+        <a href="/courses/">Courses</a>
+        <a href="/about.html">About</a>
+      </div>
+    </div>
+    <div class="footer-inner" style="margin-top:8px;">
+      <span class="footer-copy">University of Chicago &middot; M.S. Environmental Science</span>
+    </div>
+  </footer>
+
+</body>
+</html>

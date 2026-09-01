@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Revetment Biodiversity Study — Andrew McGallian</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="/" class="nav-brand">Andrew McGallian</a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/projects/" class="active">Projects</a></li>
+      <li><a href="/research/">Research</a></li>
+      <li><a href="/courses/">Courses</a></li>
+      <li><a href="/about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <header class="page-hero">
+    <div class="page-hero-inner">
+      <a href="/projects/" class="back-link">← Projects</a>
+      <p class="eyebrow">Environmental Data Science · Ecological Analysis</p>
+      <h1>Revetment Biodiversity Study</h1>
+      <p class="subtitle">
+        Multi-site ecological survey of macroinvertebrate communities across five
+        Chicago-area revetment habitats — combining alpha diversity, Shannon entropy,
+        Bray-Curtis dissimilarity, NMDS ordination, and hierarchical clustering
+        to characterize community structure and site similarity.
+      </p>
+      <div class="meta-row">
+        <span class="meta-item">
+          <span class="label">Sites</span>
+          5 revetment locations
+        </span>
+        <span class="meta-item">
+          <span class="label">Taxa</span>
+          ~10 macroinvertebrate groups
+        </span>
+        <span class="meta-item">
+          <span class="label">Course</span>
+          Environmental Data Science
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <main class="site-main">
+    <div style="display:grid; grid-template-columns: 1fr 280px; gap: 52px; align-items: start;">
+
+      <div class="prose">
+
+        <h2>Overview</h2>
+        <p>
+          Revetments — engineered riparian structures of rock, concrete, or riprap —
+          line much of Chicago's lakefront and river edges. While they serve flood control
+          and erosion functions, their ecological value varies dramatically by substrate type,
+          structural complexity, and surrounding land use.
+        </p>
+        <p>
+          This project surveys macroinvertebrate communities across five revetment sites in the
+          Chicago area, applying a full suite of community ecology metrics to quantify how
+          biodiversity and species composition differ between sites and what structural features
+          drive those differences.
+        </p>
+
+        <h2>Study Design</h2>
+
+        <h3>Site Selection</h3>
+        <p>
+          Five revetment sites were selected to span a gradient of structural and habitat
+          complexity — from simple concrete seawalls to complex riprap edges with
+          intersticial crevice habitat. Sites varied in substrate type, riparian vegetation
+          cover, and degree of urban encroachment.
+        </p>
+
+        <h3>Field Sampling</h3>
+        <p>
+          Macroinvertebrate communities were sampled using standardized protocols at each site.
+          Organisms were identified to the lowest practical taxonomic level, and counts were
+          recorded per sample unit. Approximately 10 macroinvertebrate groups were consistently
+          represented across all five sites.
+        </p>
+
+        <h2>Analysis Methods</h2>
+
+        <h3>Alpha Diversity &amp; Shannon Entropy</h3>
+        <p>
+          Alpha diversity (species richness per site) and Shannon-Wiener diversity index (H')
+          were calculated for each site. Shannon entropy captures both richness and evenness,
+          giving a fuller picture of community structure than raw species counts alone. Sites
+          with complex riprap habitat consistently showed higher H' values.
+        </p>
+
+        <h3>Bray-Curtis Dissimilarity</h3>
+        <p>
+          Pairwise Bray-Curtis dissimilarity was computed across all site pairs to quantify
+          compositional distance. Bray-Curtis accounts for species abundances (not just
+          presence/absence), making it appropriate for count data from replicated surveys.
+          The resulting dissimilarity matrix was used as input for both ordination and clustering.
+        </p>
+
+        <h3>NMDS Ordination</h3>
+        <p>
+          Non-metric multidimensional scaling (NMDS) was applied to the Bray-Curtis matrix
+          to project community composition into two dimensions for visualization. Sites that
+          cluster tightly in NMDS space share similar species assemblages. Stress values
+          were checked to confirm ordination quality.
+        </p>
+
+        <h3>Hierarchical Clustering</h3>
+        <p>
+          Ward's minimum variance hierarchical clustering was applied to the Bray-Curtis
+          dissimilarity matrix, producing a dendrogram of site similarity. The resulting
+          groupings were interpreted in relation to habitat structure and substrate type.
+        </p>
+
+        <h3>Radar Plot Visualization</h3>
+        <p>
+          Per-taxon relative abundance profiles for each site were visualized as radar (spider)
+          plots — allowing direct visual comparison of community "shape" across sites.
+          Sites dominated by pollution-tolerant taxa (e.g., chironomids) versus sensitive taxa
+          (e.g., EPT groups) are immediately distinguishable in this format.
+        </p>
+
+        <h2>Key Findings</h2>
+        <p>
+          NMDS and clustering identified two primary site groupings: structurally complex
+          riprap sites with higher biodiversity and more EPT-group representatives, and
+          simpler concrete/seawall sites with lower diversity dominated by pollution-tolerant
+          chironomid midges. Shannon diversity correlated positively with crevice habitat
+          availability — consistent with the intermediate disturbance hypothesis and with
+          habitat complexity driving local invertebrate diversity at engineered shorelines.
+        </p>
+
+        <div class="callout blue">
+          <p class="callout-title">Ecological Significance</p>
+          <p>
+            The results suggest that the choice of revetment design — not just its presence —
+            has measurable ecological consequences. Riprap structures supporting interstitial
+            habitat host substantially more diverse invertebrate communities than bare concrete
+            surfaces, with implications for restoration and green infrastructure design.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Sidebar -->
+      <aside style="display:flex; flex-direction:column; gap:20px; position:sticky; top:84px;">
+
+        <div style="background:var(--paper-0); border:1px solid var(--border); border-radius:var(--panel-radius); padding:18px 20px;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; letter-spacing:0.10em; text-transform:uppercase; color:var(--ink-4); margin-bottom:14px;">Methods</div>
+          <div class="tech-stack" style="flex-direction:column; gap:6px; margin:0;">
+            <div class="tech-item">Alpha diversity</div>
+            <div class="tech-item">Shannon entropy (H')</div>
+            <div class="tech-item">Bray-Curtis dissimilarity</div>
+            <div class="tech-item">NMDS ordination</div>
+            <div class="tech-item">Hierarchical clustering</div>
+            <div class="tech-item">Radar plots</div>
+          </div>
+        </div>
+
+        <div style="background:var(--paper-0); border:1px solid var(--border); border-radius:var(--panel-radius); padding:18px 20px;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; letter-spacing:0.10em; text-transform:uppercase; color:var(--ink-4); margin-bottom:14px;">Scale</div>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div>
+              <div style="font-family:'IBM Plex Mono',monospace; font-size:20px; font-weight:600; color:var(--ink-0);">5</div>
+              <div style="font-size:11px; color:var(--ink-4);">revetment study sites</div>
+            </div>
+            <div>
+              <div style="font-family:'IBM Plex Mono',monospace; font-size:20px; font-weight:600; color:var(--ink-0);">~10</div>
+              <div style="font-size:11px; color:var(--ink-4);">macroinvertebrate taxa sampled</div>
+            </div>
+            <div>
+              <div style="font-family:'IBM Plex Mono',monospace; font-size:20px; font-weight:600; color:var(--ink-0);">4</div>
+              <div style="font-size:11px; color:var(--ink-4);">complementary analysis methods</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:var(--paper-0); border:1px solid var(--border); border-radius:var(--panel-radius); padding:18px 20px;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; letter-spacing:0.10em; text-transform:uppercase; color:var(--ink-4); margin-bottom:10px;">Tools</div>
+          <div class="tech-stack" style="flex-direction:column; gap:6px; margin:0;">
+            <div class="tech-item">Python · pandas</div>
+            <div class="tech-item">scikit-bio (NMDS)</div>
+            <div class="tech-item">matplotlib / seaborn</div>
+            <div class="tech-item">scipy (clustering)</div>
+          </div>
+        </div>
+
+        <div style="background:var(--paper-0); border:1px solid var(--border); border-radius:var(--panel-radius); padding:18px 20px;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; letter-spacing:0.10em; text-transform:uppercase; color:var(--ink-4); margin-bottom:10px;">Related</div>
+          <a href="/courses/env-data-science/" style="font-size:13px; font-weight:500; color:var(--blue); display:block; margin-bottom:6px;">Environmental Data Science →</a>
+          <a href="/projects/aod/" style="font-size:13px; font-weight:500; color:var(--blue);">AOD Distribution Analysis →</a>
+        </div>
+
+      </aside>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <a href="/" class="footer-brand">Andrew McGallian</a>
+      <div class="footer-links">
+        <a href="/projects/">Projects</a>
+        <a href="/research/">Research</a>
+        <a href="/courses/">Courses</a>
+        <a href="/about.html">About</a>
+      </div>
+    </div>
+    <div class="footer-inner" style="margin-top:8px;">
+      <span class="footer-copy">University of Chicago &middot; M.S. Candidate &middot; Data Visualization Fellow</span>
+    </div>
+  </footer>
+
+</body>
+</html>

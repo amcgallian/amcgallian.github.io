@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Environmental Frontiers — Andrew McGallian</title>
+  <meta name="description" content="Multi-scale urban heat island analysis combining Landsat satellite data, mobile sensor networks, and GPS across Chicago. Presented at AGU 2024.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="/" class="nav-brand">Andrew McGallian</a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/projects/">Projects</a></li>
+      <li><a href="/research/" class="active">Research</a></li>
+      <li><a href="/courses/">Courses</a></li>
+      <li><a href="/about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <header class="page-hero">
+    <div class="page-hero-inner">
+      <a href="/research/" class="back-link">← Research</a>
+      <p class="eyebrow">Urban Climate · Field Research · AGU 2024</p>
+      <h1>Environmental Frontiers</h1>
+      <p class="subtitle">
+        Multi-scale urban heat island analysis across Chicago, combining Landsat satellite
+        thermal imagery, mobile sensor networks, GPS tracking, and field surveys.
+        Presented at the American Geophysical Union Fall Meeting 2024.
+      </p>
+      <div class="meta-row">
+        <span class="meta-item">
+          <span class="label">Period</span>
+          Summer 2024
+        </span>
+        <span class="meta-item">
+          <span class="label">Conference</span>
+          AGU Fall Meeting 2024
+        </span>
+        <span class="meta-item">
+          <span class="label">Study area</span>
+          Chicago, IL
+        </span>
+        <span class="meta-item">
+          <span class="label">Scale</span>
+          Satellite + street-level
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <main class="site-main">
+    <div style="display:grid; grid-template-columns: 1fr 290px; gap: 52px; align-items: start;">
+
+      <div class="prose">
+
+        <h2>Overview</h2>
+        <p>
+          Environmental Frontiers is a collaborative urban heat island research project investigating
+          how Chicago's built environment — buildings, parks, pavement, zoning types — shapes local
+          temperature patterns at multiple spatial and temporal scales.
+        </p>
+        <p>
+          The project fuses two distinct data streams: <strong>Landsat 8/9 satellite thermal imagery</strong>
+          at 30 m resolution, processed from raw digital numbers through radiometric calibration to land
+          surface temperature; and <strong>M-TEMP mobile sensor carts</strong> that measure air temperature,
+          infrared, and relative humidity at six vertical heights simultaneously while traversing city
+          transects on foot. GPS tracks tie every sensor reading to a location.
+        </p>
+        <p>
+          Field campaigns ran from June through September 2024, with teams walking transects across
+          diverse neighborhoods — the UChicago campus, Roosevelt Road, Midway Plaisance, and several
+          parks — collecting paired satellite and ground-truth measurements.
+        </p>
+
+        <div class="callout blue">
+          <p class="callout-title">AGU Fall Meeting 2024</p>
+          <p>
+            Results were presented as a poster at the American Geophysical Union Fall Meeting,
+            December 2024 — one of the largest earth and space science conferences in the world
+            (~25,000 attendees).
+          </p>
+        </div>
+
+        <h2>Data Sources</h2>
+
+        <h3>Landsat 8/9 TIRS (Satellite)</h3>
+        <p>
+          Thermal Infrared Sensor (TIRS) Band 10 imagery from multiple Landsat overpasses spanning
+          summer 2024. Processing pipeline:
+        </p>
+        <ol>
+          <li>Extract radiometric calibration constants (ML, AL, K1, K2) from MTL metadata using <code>constripper.ipynb</code></li>
+          <li>Convert raw digital numbers → at-sensor radiance → top-of-atmosphere radiance</li>
+          <li>Apply Planck's law: radiance → brightness temperature (Kelvin → Fahrenheit)</li>
+          <li>Emissivity correction and atmospheric correction for land surface temperature</li>
+          <li>Resample from 100 m to 30 m resolution; export as GeoTIFF</li>
+        </ol>
+
+        <h3>M-TEMP Mobile Sensor Carts</h3>
+        <p>
+          University of Chicago M-TEMP carts deploy RTD temperature sensors at six heights (0.6 ft,
+          1.8 ft, 3.6 ft, 5.4 ft, 7.2 ft, 9.0 ft) along with infrared and humidity sensors. Two carts
+          operated in parallel on some transects, allowing side-by-side spatial comparison. Sensor
+          voltages are converted to physical units through calibration curves in the <code>mtemp.py</code> module.
+        </p>
+
+        <h3>GPS Tracks</h3>
+        <p>
+          Time-synchronized GPS coordinates (latitude/longitude) collected on each walk, merged with
+          sensor readings on common timestamps to create spatially enabled DataFrames. Interpolated
+          onto regular grids using <code>scipy.interpolate.griddata</code> to generate continuous
+          heatmap surfaces.
+        </p>
+
+        <h3>Field Survey Data</h3>
+        <p>
+          Structured field observations collected via ArcGIS Survey123 — land cover conditions,
+          shade patterns, surface types, and anomalous phenomena — georeferenced to sensor walk routes.
+          Surveys included Roosevelt Road walks (3 days), Florence Stout Park tree survey, and the
+          Midway Landsat Walk (September 8, 2024).
+        </p>
+
+        <h3>Zoning &amp; Land-Use Data</h3>
+        <p>
+          Chicago community area boundaries and zoning district shapefiles, spatially joined to
+          temperature measurements to analyze how land-use type relates to observed heat patterns.
+        </p>
+
+        <h2>Analysis</h2>
+
+        <div class="skills-list">
+          <div class="skill-item">
+            <div class="skill-dot"></div>
+            <div>
+              <div class="skill-name">Landsat thermal pipeline (<code>landsattotemp.ipynb</code>)</div>
+              <div class="skill-note">Full DN → LST conversion chain applied to 10+ satellite scenes across summer 2024.</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-dot"></div>
+            <div>
+              <div class="skill-name">GPS + sensor merge (<code>sensortomap.ipynb</code>)</div>
+              <div class="skill-note">Temporal alignment of sensor logs and GPS tracks; spatial interpolation to continuous heatmap surfaces; multi-cart overlay for parallel walk comparisons.</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-dot"></div>
+            <div>
+              <div class="skill-name">Vertical temperature profiles (<code>vertsprocessing.ipynb</code>)</div>
+              <div class="skill-note">Analysis of temperature stratification across the six sensor heights, revealing how urban canopy structure shapes the near-surface temperature gradient.</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-dot"></div>
+            <div>
+              <div class="skill-name">Zoning analysis (<code>zoning.ipynb</code>)</div>
+              <div class="skill-note">Spatial join of zoning districts with Chicago neighborhoods; identifies dominant zoning class per community area; overlays temperature data for land-use comparison.</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-dot"></div>
+            <div>
+              <div class="skill-name">Composite aggregation (<code>composite.py</code>)</div>
+              <div class="skill-note">Aggregates data across multiple test routes and dates into a single composite temperature surface, supporting cross-neighborhood comparison.</div>
+            </div>
+          </div>
+        </div>
+
+        <h2>M-TEMP Python Module</h2>
+        <p>
+          A core output of Environmental Frontiers is <strong>M-TEMP</strong> — a reusable,
+          open-source Python package for processing mobile temperature sensor data. The module
+          encapsulates the full data pipeline from raw sensor CSVs through spatial analysis
+          and visualization, making the methodology reproducible and extensible for future
+          mobile sensing campaigns.
+        </p>
+        <p>
+          M-TEMP provides a command-line interface (<code>main.py</code>) and a core library
+          (<code>mtemp.py</code>) with functions for sensor calibration, temporal alignment,
+          GPS merging, heatmap generation, time series visualization, and scatter plotting.
+          Cart configurations for both Cart 1 and Cart 2 hardware setups are supported.
+        </p>
+
+        <div class="callout amber">
+          <p class="callout-title">Open Source</p>
+          <p>
+            M-TEMP is published as an open-source repository, available for other urban
+            climate research groups to adapt for their own mobile sensing campaigns.
+          </p>
+        </div>
+
+        <h2>Outputs &amp; Maps</h2>
+
+        <ul>
+          <li>Landsat LST rasters for 10+ dates across summer 2024 (30 m resolution, GeoTIFF)</li>
+          <li>Sensor-derived temperature heatmaps: football field transect, S. Ellis Ave, Roosevelt Road</li>
+          <li>Multi-group temperature overlays (two-cart parallel walks)</li>
+          <li>Zoning overlaid with satellite temperature — community-area comparison maps</li>
+          <li>Parks vs. non-parks temperature differential analysis</li>
+          <li>Vertical temperature profile plots (6-height stratification)</li>
+          <li>AGU 2024 conference poster</li>
+          <li>Mapping &amp; Verticals Teams technical report</li>
+          <li>Landsat processing methods report</li>
+        </ul>
+
+        <h2>AGU 2024 Poster</h2>
+        <p>
+          The full research poster presented at the American Geophysical Union Fall Meeting,
+          December 2024.
+        </p>
+        <iframe class="poster-embed" src="/assets/agu24-poster.pdf" title="AGU 2024 Poster"></iframe>
+        <p class="poster-caption">AGU Fall Meeting 2024 — Environmental Frontiers: Urban Heat Island Analysis, Chicago</p>
+        <p style="text-align:center; margin-top:-10px;">
+          <a href="/assets/agu24-poster.pdf" download class="btn btn-secondary" style="font-size:12px;">Download PDF</a>
+        </p>
+
+        <div class="figure-placeholder">[ Figure: Landsat LST map, Chicago, Summer 2024 — to be added ]</div>
+        <div class="figure-placeholder">[ Figure: Roosevelt Road sensor heatmap — to be added ]</div>
+
+      </div>
+
+      <!-- Sidebar -->
+      <aside style="display:flex; flex-direction:column; gap:20px; position:sticky; top:84px;">
+
+        <div style="background:var(--paper-0); border:1px solid var(--border); border-radius:var(--panel-radius); padding:18px 20px;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; letter-spacing:0.10em; text-transform:uppercase; color:var(--ink-4); margin-bottom:14px;">Tech Stack</div>
+          <div class="tech-stack" style="flex-direction:column; gap:6px; margin:0;">
+            <div class="tech-item">Python · Jupyter</div>
+            <div class="tech-item">GeoPandas · Rasterio</div>
+            <div class="tech-item">scipy (griddata)</div>
+            <div class="tech-item">matplotlib</div>
+            <div class="tech-item">QGIS</div>
+            <div class="tech-item">ArcGIS Survey123</div>
+            <div class="tech-item">Landsat 8/9 TIRS</div>
+          </div>
+        </div>
+
+        <div style="background:var(--paper-0); border:1px solid var(--border); border-radius:var(--panel-radius); padding:18px 20px;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; letter-spacing:0.10em; text-transform:uppercase; color:var(--ink-4); margin-bottom:14px;">Topics</div>
+          <div class="tag-row">
+            <span class="tag blue">Urban heat islands</span>
+            <span class="tag blue">Remote sensing</span>
+            <span class="tag blue">Mobile sensing</span>
+            <span class="tag">Land surface temperature</span>
+            <span class="tag">Landsat TIRS</span>
+            <span class="tag">Field surveys</span>
+            <span class="tag">Urban climate</span>
+            <span class="tag">Open source</span>
+          </div>
+        </div>
+
+        <div style="background:var(--paper-0); border:1px solid var(--border); border-radius:var(--panel-radius); padding:18px 20px;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; letter-spacing:0.10em; text-transform:uppercase; color:var(--ink-4); margin-bottom:10px;">See Also</div>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <a href="/courses/remote-sensing/" style="font-size:13px; font-weight:500; color:var(--blue);">Intro to Remote Sensing →</a>
+            <a href="/projects/chicago-atlas/" style="font-size:13px; font-weight:500; color:var(--blue);">Chicago Environmental Atlas →</a>
+          </div>
+          <div style="margin-top:10px; padding-top:10px; border-top:1px solid var(--border-soft);">
+            <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--ink-4); margin-bottom:4px;">LST data feeds into:</div>
+            <p style="font-size:12px; color:var(--ink-3); margin:0;">The Landsat temperature processing developed here directly informed the land surface temperature layer in the Chicago Environmental Atlas.</p>
+          </div>
+        </div>
+
+      </aside>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <a href="/" class="footer-brand">Andrew McGallian</a>
+      <div class="footer-links">
+        <a href="/projects/">Projects</a>
+        <a href="/research/">Research</a>
+        <a href="/courses/">Courses</a>
+        <a href="/about.html">About</a>
+      </div>
+    </div>
+    <div class="footer-inner" style="margin-top:8px;">
+      <span class="footer-copy">University of Chicago &middot; M.S. Candidate &middot; Data Visualization Fellow</span>
+    </div>
+  </footer>
+
+</body>
+</html>

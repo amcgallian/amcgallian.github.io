@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wildfire Risk Assessment — Andrew McGallian</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="/" class="nav-brand">Andrew McGallian</a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/projects/" class="active">Projects</a></li>
+      <li><a href="/research/">Research</a></li>
+      <li><a href="/courses/">Courses</a></li>
+      <li><a href="/about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <header class="page-hero">
+    <div class="page-hero-inner">
+      <a href="/projects/" class="back-link">← Projects</a>
+      <p class="eyebrow">Remote Sensing · Contra Costa County, CA · Introduction to Remote Sensing</p>
+      <h1>Wildfire Risk Assessment from Multi-Source Remote Sensing</h1>
+      <p class="subtitle">
+        Multi-layer wildfire risk model for a Contra Costa County, California, study area, integrating
+        LIDAR-derived canopy structure, fuel type classification, PRISM precipitation surfaces,
+        and topographic slope — with final risk maps delivered as a conference-style poster.
+      </p>
+      <div class="meta-row">
+        <span class="meta-item">
+          <span class="label">Course</span>
+          Intro to Remote Sensing
+        </span>
+        <span class="meta-item">
+          <span class="label">Study Area</span>
+          Contra Costa County, CA
+        </span>
+        <span class="meta-item">
+          <span class="label">Output</span>
+          Wildfire risk surface + poster
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <main class="site-main">
+    <div style="display:grid; grid-template-columns: 1fr 280px; gap: 52px; align-items: start;">
+
+      <div class="prose">
+
+        <h2>Overview</h2>
+        <p>
+          This project builds a composite wildfire risk model for a Contra Costa County, California
+          using four independent remote sensing data sources. Rather than relying on a single sensor,
+          the analysis combines structural, spectral, climatic, and topographic inputs — each
+          contributing a distinct dimension of risk — into a weighted multi-criteria risk surface.
+        </p>
+        <p>
+          The final outputs were compiled into a conference-style research poster presenting the
+          methodology, intermediate raster layers, and the classified risk map.
+        </p>
+
+        <h2>Data Sources</h2>
+
+        <h3>LIDAR — Canopy Height &amp; Structure</h3>
+        <p>
+          Airborne LIDAR point cloud data was processed to derive canopy height models (CHM) and
+          canopy cover metrics. Dense, tall canopies represent elevated fuel loads and vertical
+          fuel continuity — both key predictors of crown fire potential. LIDAR-derived height
+          bands were classified into fuel structure risk tiers.
+        </p>
+
+        <h3>Fuel Type Classification</h3>
+        <p>
+          Multispectral imagery was classified using the National Forest Fuel Model system
+          (Anderson 13 / Scott &amp; Burgan 40) to assign fuel type categories across the
+          landscape. High-risk fuel models (chaparral, closed timber litter, slash) were
+          weighted more heavily in the composite risk calculation.
+        </p>
+
+        <h3>PRISM Climate — Precipitation</h3>
+        <p>
+          PRISM gridded 30-year normal annual precipitation surfaces were used as a proxy for
+          vegetation moisture and drought susceptibility. Drier sub-regions within the study area
+          received higher risk weights, capturing the role of moisture deficit in fire behavior.
+        </p>
+
+        <h3>Topography — Slope</h3>
+        <p>
+          A 10-meter DEM was used to derive slope in degrees. Steep terrain accelerates fire
+          spread upslope and complicates suppression access. Slope was reclassified into five
+          risk tiers (0–10°, 10–20°, 20–30°, 30–40°, &gt;40°) and entered as the fourth
+          risk component.
+        </p>
+
+        <h2>Analysis &amp; Methods</h2>
+        <p>
+          All four inputs were resampled to a common 30-meter grid and reclassified to a 1–5
+          risk scale. A weighted linear combination was applied:
+        </p>
+        <ul>
+          <li>Fuel type: 35% weight (highest driver of fire behavior)</li>
+          <li>Canopy height/structure: 30%</li>
+          <li>Slope: 20%</li>
+          <li>Precipitation deficit: 15%</li>
+        </ul>
+        <p>
+          The composite risk surface was classified into five output categories (Very Low to Very
+          High) and symbolized using a sequential color ramp. High-risk zones cluster in steep,
+          south-facing slopes with closed-canopy timber fuel models and low precipitation normals.
+        </p>
+
+        <h2>Research Poster</h2>
+        <p>
+          The full methodology, data layers, and risk map are presented in the poster below.
+        </p>
+
+        <iframe class="poster-embed" src="/assets/irsa-poster.pdf" title="Wildfire Risk Assessment Poster"></iframe>
+        <p class="poster-caption">Wildfire Risk Assessment — Introduction to Remote Sensing final project poster</p>
+        <p style="text-align:center; margin-top:-10px;">
+          <a href="/assets/irsa-poster.pdf" download class="btn btn-secondary" style="font-size:12px;">Download PDF</a>
+        </p>
+
+      </div>
+
+      <!-- Sidebar -->
+      <aside style="display:flex; flex-direction:column; gap:20px; position:sticky; top:84px;">
+
+        <div style="background:var(--paper-0); border:1px solid var(--border); border-radius:var(--panel-radius); padding:18px 20px;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; letter-spacing:0.10em; text-transform:uppercase; color:var(--ink-4); margin-bottom:14px;">Tech Stack</div>
+          <div class="tech-stack" style="flex-direction:column; gap:6px; margin:0;">
+            <div class="tech-item">ArcGIS Pro</div>
+            <div class="tech-item">QGIS</div>
+            <div class="tech-item">LIDAR processing</div>
+            <div class="tech-item">PRISM climate data</div>
+            <div class="tech-item">DEM analysis</div>
+            <div class="tech-item">Raster algebra</div>
+          </div>
+        </div>
+
+        <div style="background:var(--paper-0); border:1px solid var(--border); border-radius:var(--panel-radius); padding:18px 20px;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; letter-spacing:0.10em; text-transform:uppercase; color:var(--ink-4); margin-bottom:12px;">Data Sources</div>
+          <div class="skills-list" style="gap:6px;">
+            <div class="skill-item" style="padding:8px 12px;">
+              <div class="skill-dot"></div>
+              <div><div class="skill-name">USGS LIDAR Point Cloud</div></div>
+            </div>
+            <div class="skill-item" style="padding:8px 12px;">
+              <div class="skill-dot"></div>
+              <div><div class="skill-name">LANDFIRE Fuel Models</div></div>
+            </div>
+            <div class="skill-item" style="padding:8px 12px;">
+              <div class="skill-dot"></div>
+              <div><div class="skill-name">PRISM 30-yr Normals</div></div>
+            </div>
+            <div class="skill-item" style="padding:8px 12px;">
+              <div class="skill-dot"></div>
+              <div><div class="skill-name">USGS 10m DEM</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:var(--paper-0); border:1px solid var(--border); border-radius:var(--panel-radius); padding:18px 20px;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; letter-spacing:0.10em; text-transform:uppercase; color:var(--ink-4); margin-bottom:10px;">Related</div>
+          <a href="/courses/remote-sensing/" style="font-size:13px; font-weight:500; color:var(--blue); display:block; margin-bottom:6px;">Intro to Remote Sensing →</a>
+          <a href="/research/ef/" style="font-size:13px; font-weight:500; color:var(--blue);">Environmental Frontiers →</a>
+        </div>
+
+      </aside>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <a href="/" class="footer-brand">Andrew McGallian</a>
+      <div class="footer-links">
+        <a href="/projects/">Projects</a>
+        <a href="/research/">Research</a>
+        <a href="/courses/">Courses</a>
+        <a href="/about.html">About</a>
+      </div>
+    </div>
+    <div class="footer-inner" style="margin-top:8px;">
+      <span class="footer-copy">University of Chicago &middot; M.S. Candidate &middot; Data Visualization Fellow</span>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Environmental Data Science — Andrew McGallian</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="/" class="nav-brand">Andrew McGallian</a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/projects/">Projects</a></li>
+      <li><a href="/research/">Research</a></li>
+      <li><a href="/courses/" class="active">Courses</a></li>
+      <li><a href="/about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <header class="page-hero">
+    <div class="page-hero-inner">
+      <a href="/courses/" class="back-link">← Courses</a>
+      <p class="eyebrow">Graduate · University of Chicago</p>
+      <h1>Environmental Data Science</h1>
+      <p class="subtitle">
+        Spatial analysis, biodiversity informatics, and reproducible computational workflows
+        applied to real-world environmental datasets.
+      </p>
+    </div>
+  </header>
+
+  <main class="site-main">
+    <div style="display:grid; grid-template-columns: 1fr 280px; gap: 52px; align-items: start;">
+
+      <div class="prose">
+
+        <h2>Course Overview</h2>
+        <p>
+          Environmental Data Science introduced graduate-level methods for working with spatial
+          and ecological data computationally. The course emphasized reproducibility, open data
+          standards, and real-world application across several thematic labs.
+        </p>
+
+        <h2>Lab Work</h2>
+
+        <h3>Biodiversity Data (W2)</h3>
+        <p>
+          Introduction to biodiversity informatics using GBIF occurrence records. Covered data
+          access via APIs, cleaning occurrence data, handling spatial uncertainty, and visualizing
+          species distributions.
+        </p>
+
+        <h3>Vector Spatial Analysis (W4)</h3>
+        <p>
+          Geoprocessing with GeoPandas — spatial joins, overlays, buffer analysis, and
+          dissolve operations. Applied to real Chicago community area and infrastructure datasets.
+        </p>
+
+        <h3>Raster Analysis (W6)</h3>
+        <p>
+          Raster data models, coordinate systems, and analysis with Rasterio. Topics included
+          resampling, masking, zonal statistics, and raster algebra for environmental metrics.
+        </p>
+
+        <h3>Species Distribution Modeling (W7)</h3>
+        <p>
+          Introduction to species distribution modeling — presence/background sampling, environmental
+          predictors, and model evaluation. Applied MaxEnt-style approaches using spatial Python tools.
+        </p>
+
+        <h3>Reproducible Workflows (W8)</h3>
+        <p>
+          Final lab focused on building reproducible, documented analysis pipelines — environment
+          management, notebook discipline, and sharing geospatial analysis code.
+        </p>
+
+        <h2>Class Projects</h2>
+
+        <h3>CAWS — Chicago Area Waterway System</h3>
+        <p>
+          Team project analyzing water quality across the Chicago Area Waterway System (CAWS)
+          using Metropolitan Water Reclamation District (MWRD) monitoring data. The project
+          computed a composite Water Quality Index (WQI) and Habitat Morphology &amp; Physical
+          Index (HMPI) across monitoring stations, joining these to spatial geometries for
+          choropleth mapping of waterway health across Chicago's interconnected canal network.
+        </p>
+        <p>
+          Autumn 2025. Collaborative project combining data wrangling, spatial join operations,
+          and communication-focused visualization.
+        </p>
+        <div class="tag-row" style="margin-bottom: 20px;">
+          <span class="tag">MWRD data</span>
+          <span class="tag">Water Quality Index</span>
+          <span class="tag">Spatial join</span>
+          <span class="tag">GeoPandas</span>
+          <span class="tag">Team project</span>
+        </div>
+
+      </div>
+
+      <!-- Sidebar -->
+      <aside style="display:flex; flex-direction:column; gap:20px; position:sticky; top:84px;">
+
+        <div style="background:var(--paper-0); border:1px solid var(--border); border-radius:var(--panel-radius); padding:18px 20px;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; letter-spacing:0.10em; text-transform:uppercase; color:var(--ink-4); margin-bottom:14px;">Skills</div>
+          <div class="skills-list" style="gap:6px;">
+            <div class="skill-item" style="padding:9px 12px;">
+              <div class="skill-dot"></div>
+              <div>
+                <div class="skill-name">Spatial analysis (Python)</div>
+                <div class="skill-note">GeoPandas, Shapely, Fiona</div>
+              </div>
+            </div>
+            <div class="skill-item" style="padding:9px 12px;">
+              <div class="skill-dot"></div>
+              <div>
+                <div class="skill-name">Raster processing</div>
+                <div class="skill-note">Rasterio, NumPy array operations</div>
+              </div>
+            </div>
+            <div class="skill-item" style="padding:9px 12px;">
+              <div class="skill-dot"></div>
+              <div>
+                <div class="skill-name">Biodiversity informatics</div>
+                <div class="skill-note">GBIF API, occurrence data cleaning</div>
+              </div>
+            </div>
+            <div class="skill-item" style="padding:9px 12px;">
+              <div class="skill-dot"></div>
+              <div>
+                <div class="skill-name">Species distribution modeling</div>
+                <div class="skill-note">Presence/background, evaluation metrics</div>
+              </div>
+            </div>
+            <div class="skill-item" style="padding:9px 12px;">
+              <div class="skill-dot"></div>
+              <div>
+                <div class="skill-name">Reproducible workflows</div>
+                <div class="skill-note">Jupyter, conda, documentation</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:var(--paper-0); border:1px solid var(--border); border-radius:var(--panel-radius); padding:18px 20px;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; letter-spacing:0.10em; text-transform:uppercase; color:var(--ink-4); margin-bottom:10px;">Projects From This Course</div>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <a href="/projects/biodiversity/" style="font-size:13px; font-weight:500; color:var(--blue);">Revetment Biodiversity Study →</a>
+            <a href="/projects/aod/" style="font-size:13px; font-weight:500; color:var(--blue);">AOD Distribution Analysis →</a>
+            <a href="/projects/chicago-atlas/" style="font-size:13px; font-weight:500; color:var(--blue);">Chicago Environmental Atlas →</a>
+          </div>
+        </div>
+
+      </aside>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <a href="/" class="footer-brand">Andrew McGallian</a>
+      <div class="footer-links">
+        <a href="/projects/">Projects</a>
+        <a href="/research/">Research</a>
+        <a href="/courses/">Courses</a>
+        <a href="/about.html">About</a>
+      </div>
+    </div>
+    <div class="footer-inner" style="margin-top:8px;">
+      <span class="footer-copy">University of Chicago &middot; M.S. Candidate &middot; Data Visualization Fellow</span>
+    </div>
+  </footer>
+
+</body>
+</html>

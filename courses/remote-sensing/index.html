@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Introduction to Remote Sensing — Andrew McGallian</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="/" class="nav-brand">Andrew McGallian</a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/projects/">Projects</a></li>
+      <li><a href="/research/">Research</a></li>
+      <li><a href="/courses/" class="active">Courses</a></li>
+      <li><a href="/about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <header class="page-hero">
+    <div class="page-hero-inner">
+      <a href="/courses/" class="back-link">← Courses</a>
+      <p class="eyebrow">Graduate · University of Chicago</p>
+      <h1>Introduction to Remote Sensing</h1>
+      <p class="subtitle">
+        Satellite image acquisition, preprocessing, and analysis — from electromagnetic
+        theory through applied Landsat thermal band processing and land cover classification.
+      </p>
+    </div>
+  </header>
+
+  <main class="site-main">
+    <div style="display:grid; grid-template-columns: 1fr 280px; gap: 52px; align-items: start;">
+
+      <div class="prose">
+
+        <h2>Course Overview</h2>
+        <p>
+          Introduction to Remote Sensing covered the full pipeline from electromagnetic radiation
+          physics through applied analysis of multi-spectral satellite imagery. Emphasis was placed
+          on Landsat data, thermal band processing, and practical QGIS/Python workflows.
+        </p>
+
+        <h2>Key Topics</h2>
+
+        <h3>Electromagnetic Spectrum &amp; Sensor Physics</h3>
+        <p>
+          Foundations of how satellite sensors record reflected and emitted radiation across
+          different spectral bands — visible, near-infrared, shortwave infrared, and thermal infrared.
+          Radiometric calibration and atmospheric correction concepts.
+        </p>
+
+        <h3>Landsat Data Processing</h3>
+        <p>
+          Hands-on processing of Landsat 8/9 imagery — accessing USGS data archives, converting
+          digital numbers to top-of-atmosphere reflectance, and computing common spectral indices
+          (NDVI, NDWI, NBR).
+        </p>
+
+        <h3>Thermal Band Analysis</h3>
+        <p>
+          Land surface temperature (LST) retrieval from Landsat thermal bands. Processing involved
+          extracting radiometric calibration constants, converting thermal band values to at-sensor
+          brightness temperature, and applying split-window corrections.
+        </p>
+
+        <div class="callout blue">
+          <p class="callout-title">Applied directly in the Environmental Fellowship</p>
+          <p>
+            Thermal band processing skills developed here were directly applied in the EF project's
+            Landsat temperature extraction pipeline, and later integrated into the Chicago Environmental
+            Atlas as the land surface temperature data layer.
+          </p>
+        </div>
+
+        <h3>Land Cover Classification</h3>
+        <p>
+          Supervised and unsupervised land cover classification using multi-spectral imagery.
+          Training sample collection, maximum likelihood classification, and accuracy assessment
+          with confusion matrices.
+        </p>
+
+        <h3>Change Detection</h3>
+        <p>
+          Multi-temporal analysis to detect land cover change — image differencing, post-classification
+          comparison, and change vector analysis applied to real before/after datasets.
+        </p>
+
+        <h2>Course Project</h2>
+        <p>
+          An independent remote sensing analysis project applying course methods to a self-selected
+          study area and research question. Scripts and analysis outputs are in the project archive.
+        </p>
+
+      </div>
+
+      <!-- Sidebar -->
+      <aside style="display:flex; flex-direction:column; gap:20px; position:sticky; top:84px;">
+
+        <div style="background:var(--paper-0); border:1px solid var(--border); border-radius:var(--panel-radius); padding:18px 20px;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; letter-spacing:0.10em; text-transform:uppercase; color:var(--ink-4); margin-bottom:14px;">Skills</div>
+          <div class="skills-list" style="gap:6px;">
+            <div class="skill-item" style="padding:9px 12px;">
+              <div class="skill-dot"></div>
+              <div>
+                <div class="skill-name">Landsat processing</div>
+                <div class="skill-note">L8/L9 surface reflectance, DN conversion</div>
+              </div>
+            </div>
+            <div class="skill-item" style="padding:9px 12px;">
+              <div class="skill-dot"></div>
+              <div>
+                <div class="skill-name">Land surface temperature</div>
+                <div class="skill-note">Thermal band retrieval, calibration constants</div>
+              </div>
+            </div>
+            <div class="skill-item" style="padding:9px 12px;">
+              <div class="skill-dot"></div>
+              <div>
+                <div class="skill-name">Spectral indices</div>
+                <div class="skill-note">NDVI, NDWI, NBR</div>
+              </div>
+            </div>
+            <div class="skill-item" style="padding:9px 12px;">
+              <div class="skill-dot"></div>
+              <div>
+                <div class="skill-name">Land cover classification</div>
+                <div class="skill-note">Supervised/unsupervised, accuracy assessment</div>
+              </div>
+            </div>
+            <div class="skill-item" style="padding:9px 12px;">
+              <div class="skill-dot"></div>
+              <div>
+                <div class="skill-name">QGIS workflows</div>
+                <div class="skill-note">Raster analysis, cartographic output</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:var(--paper-0); border:1px solid var(--border); border-radius:var(--panel-radius); padding:18px 20px;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; letter-spacing:0.10em; text-transform:uppercase; color:var(--ink-4); margin-bottom:10px;">Applied In</div>
+          <a href="/projects/chicago-atlas/" style="font-size:13px; font-weight:500; color:var(--blue); display:block; margin-bottom:6px;">Chicago Environmental Atlas →</a>
+          <a href="/projects/make-it-rain/" style="font-size:13px; font-weight:500; color:var(--blue); display:block; margin-bottom:6px;">Make It Rain →</a>
+        </div>
+
+      </aside>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <a href="/" class="footer-brand">Andrew McGallian</a>
+      <div class="footer-links">
+        <a href="/projects/">Projects</a>
+        <a href="/research/">Research</a>
+        <a href="/courses/">Courses</a>
+        <a href="/about.html">About</a>
+      </div>
+    </div>
+    <div class="footer-inner" style="margin-top:8px;">
+      <span class="footer-copy">University of Chicago &middot; M.S. Candidate &middot; Data Visualization Fellow</span>
+    </div>
+  </footer>
+
+</body>
+</html>

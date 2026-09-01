@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TKAP Tools — Andrew McGallian</title>
+  <meta name="description" content="A published QGIS plugin used in the field by an international archaeological project.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="/" class="nav-brand">Andrew McGallian</a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/projects/" class="active">Projects</a></li>
+      <li><a href="/research/">Research</a></li>
+      <li><a href="/courses/">Courses</a></li>
+      <li><a href="/about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <header class="page-hero">
+    <div class="page-hero-inner">
+      <a href="/projects/" class="back-link">← Projects</a>
+      <p class="eyebrow">Open Source · QGIS Plugin · GPL-2.0</p>
+      <h1>TKAP Tools</h1>
+      <p class="subtitle">
+        A QGIS plugin built and published for the Türkmen-Karahöyük Archaeological Project,
+        used in the field by an international excavation team.
+      </p>
+      <div class="meta-row">
+        <span class="meta-item">
+          <span class="label">Stack</span>
+          Python · PyQGIS
+        </span>
+        <span class="meta-item">
+          <span class="label">Requires</span>
+          QGIS 3.34+
+        </span>
+        <span class="meta-item">
+          <span class="label">License</span>
+          GPL-2.0
+        </span>
+      </div>
+      <div class="hero-actions">
+        <a href="https://github.com/amcgallian/tkap-qgis" class="btn btn-primary">GitHub →</a>
+        <a href="https://amcgallian.github.io/tkap-qgis/" class="btn btn-secondary">Docs →</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="site-main">
+    <div style="display:grid; grid-template-columns: 1fr 280px; gap: 52px; align-items: start;">
+
+      <div class="prose">
+
+        <h2>Overview</h2>
+        <p>
+          Excavation teams collect survey points in the field with Emlid GNSS receivers, but turning
+          raw points into the polygons, phase plans, and section drawings archaeologists actually use
+          was a manual process. TKAP Tools automates that pipeline inside QGIS, and ships to the field
+          team through a self-hosted plugin repository so updates install the way any other QGIS plugin
+          does — no manual file copying required.
+        </p>
+
+        <h2>Three tools</h2>
+
+        <div class="skills-list">
+          <div class="skill-item">
+            <div class="skill-dot"></div>
+            <div>
+              <div class="skill-name">Survey Points to Polygons</div>
+              <div class="skill-note">Builds stratigraphic unit (SU) and Feature polygons directly from Emlid GNSS point exports.</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-dot"></div>
+            <div>
+              <div class="skill-name">Stratigraphic Phasing</div>
+              <div class="skill-note">Splits SUs into one layer per excavation phase and exports phase plans for the field team.</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-dot"></div>
+            <div>
+              <div class="skill-name">Section Drawing</div>
+              <div class="skill-note">Draws stratigraphic sections directly over a rectified photo of the excavated wall face.</div>
+            </div>
+          </div>
+        </div>
+
+        <h2>Distribution</h2>
+        <p>
+          The plugin installs from a self-hosted repository at
+          <code>amcgallian.github.io/tkap-qgis/plugins.xml</code>, so the field team gets version
+          updates automatically through QGIS's own Plugin Manager rather than needing a new zip file
+          each season.
+        </p>
+
+      </div>
+
+      <aside style="display:flex; flex-direction:column; gap:20px; position:sticky; top:84px;">
+
+        <div style="background:var(--paper-0); border:1px solid var(--border); border-radius:var(--panel-radius); padding:18px 20px;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; letter-spacing:0.10em; text-transform:uppercase; color:var(--ink-4); margin-bottom:14px;">Tech Stack</div>
+          <div class="tech-stack" style="flex-direction:column; gap:6px; margin:0;">
+            <div class="tech-item">Python</div>
+            <div class="tech-item">PyQGIS</div>
+            <div class="tech-item">GitHub Pages</div>
+          </div>
+        </div>
+
+        <div style="background:var(--paper-0); border:1px solid var(--border); border-radius:var(--panel-radius); padding:18px 20px;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; letter-spacing:0.10em; text-transform:uppercase; color:var(--ink-4); margin-bottom:14px;">Topics</div>
+          <div class="tag-row">
+            <span class="tag blue">QGIS plugin</span>
+            <span class="tag blue">GIS</span>
+            <span class="tag">Archaeology</span>
+            <span class="tag">GNSS survey</span>
+            <span class="tag">Open source</span>
+          </div>
+        </div>
+
+      </aside>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <a href="/" class="footer-brand">Andrew McGallian</a>
+      <div class="footer-links">
+        <a href="/projects/">Projects</a>
+        <a href="/research/">Research</a>
+        <a href="/courses/">Courses</a>
+        <a href="/about.html">About</a>
+      </div>
+    </div>
+    <div class="footer-inner" style="margin-top:8px;">
+      <span class="footer-copy">University of Chicago &middot; M.S. Environmental Science</span>
+    </div>
+  </footer>
+
+</body>
+</html>

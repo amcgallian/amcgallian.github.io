@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Andrew McGallian</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    .about-grid {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 56px;
+      align-items: start;
+    }
+
+    .headshot-placeholder {
+      width: 220px;
+      height: 280px;
+      background: var(--paper-3);
+      border: 1px dashed var(--border);
+      border-radius: var(--radius);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: var(--ink-4);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      text-align: center;
+    }
+
+    .cv-section {
+      margin-top: 52px;
+    }
+
+    .cv-entry {
+      display: flex;
+      gap: 20px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .cv-entry:last-child { border-bottom: none; }
+
+    .cv-date {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--ink-4);
+      white-space: nowrap;
+      padding-top: 2px;
+      min-width: 90px;
+    }
+
+    .cv-content {}
+
+    .cv-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink-0);
+      margin-bottom: 2px;
+    }
+
+    .cv-org {
+      font-size: 13px;
+      color: var(--ink-3);
+      margin-bottom: 4px;
+    }
+
+    .cv-desc {
+      font-size: 13px;
+      color: var(--ink-2);
+      line-height: 1.55;
+    }
+
+    @media (max-width: 700px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .headshot-placeholder { width: 160px; height: 200px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="/" class="nav-brand">Andrew McGallian</a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/projects/">Projects</a></li>
+      <li><a href="/research/">Research</a></li>
+      <li><a href="/courses/">Courses</a></li>
+      <li><a href="/about.html" class="active">About</a></li>
+    </ul>
+  </nav>
+
+  <header class="page-hero">
+    <div class="page-hero-inner">
+      <p class="eyebrow">University of Chicago · M.S. Candidate</p>
+      <h1>About</h1>
+      <p class="subtitle">
+        Geospatial data scientist and data visualization fellow based in Chicago.
+      </p>
+    </div>
+  </header>
+
+  <main class="site-main">
+
+    <!-- Bio section -->
+    <section style="margin-bottom:64px;">
+      <div class="about-grid">
+
+        <!-- Headshot placeholder -->
+        <div>
+          <div class="headshot-placeholder" style="border-style:solid; overflow:hidden; padding:0;">
+            <img src="/assets/headshot.jpg" alt="Andrew McGallian" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius);">
+          </div>
+          <div style="margin-top:16px; display:flex; flex-direction:column; gap:8px;">
+            <a href="/assets/cv.pdf" class="btn btn-secondary" style="justify-content:center;" download>
+              Download CV
+            </a>
+          </div>
+        </div>
+
+        <!-- Bio text -->
+        <div>
+          <div class="prose">
+            <!-- ✏️  Replace this placeholder with your actual bio -->
+            <div style="background:var(--amber-dim); border:1px dashed var(--amber-border); border-radius:var(--radius); padding:18px 20px; margin-bottom:24px;">
+              <p style="font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--amber); margin-bottom:6px;">Bio placeholder</p>
+              <p style="font-size:13px; color:var(--ink-2); margin:0;">
+                Bio text goes here. Tell visitors who you are, what drives your work,
+                where you've been, and where you're headed.
+              </p>
+            </div>
+
+            <p>
+              I am a master's student at the University of Chicago and a Data Visualization
+              Fellow at the Center for Digital Scholarship. My work sits at the intersection
+              of geospatial computing, environmental science, and scientific visualization —
+              building tools that make complex environmental data legible and explorable.
+            </p>
+
+            <p>
+              At the UChicago Library, I design and deliver geocomputation workshops for the
+              university community and build open-source geospatial tools, including the
+              Chicago Environmental Atlas — an interactive time-series map of 150 years of
+              the city's ecological history.
+            </p>
+
+            <p>
+              I am graduating in June 2026 and available for positions in geospatial
+              data science, environmental informatics, and data visualization starting
+              in Fall 2026.
+            </p>
+          </div>
+
+          <div style="margin-top:24px;">
+            <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; letter-spacing:0.10em; text-transform:uppercase; color:var(--ink-4); margin-bottom:12px;">Contact</div>
+            <div style="display:flex; flex-direction:column; gap:6px;">
+              <a href="mailto:andymcgallian@gmail.com" style="font-size:13px; color:var(--blue);">andymcgallian@gmail.com</a>
+              <!-- Add GitHub, LinkedIn etc. here -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CV section -->
+    <section class="cv-section">
+      <div class="section-header">
+        <h2>Experience &amp; Education</h2>
+      </div>
+
+      <div style="max-width:var(--content-w);">
+
+        <h3 style="font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-4); margin-bottom:16px;">Positions</h3>
+
+        <div class="cv-entry">
+          <div class="cv-date">2025–2026</div>
+          <div class="cv-content">
+            <div class="cv-title">Data Visualization Fellow</div>
+            <div class="cv-org">Center for Digital Scholarship, University of Chicago Library</div>
+            <div class="cv-desc">
+              Designed and delivered geocomputation and GIS workshops; built the Chicago Environmental Atlas
+              and GIS Assistant catalog curation system.
+            </div>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <div class="cv-date">TBD</div>
+          <div class="cv-content">
+            <div class="cv-title">Research Assistant — Blattler Lab</div>
+            <div class="cv-org">Department of Geophysical Sciences, University of Chicago</div>
+            <div class="cv-desc">
+              Paleoclimatology and biogeochemistry research. Geological core sample documentation,
+              sulfur isotope datasets, Triassic climate reconstruction.
+            </div>
+          </div>
+        </div>
+
+        <hr class="divider" style="margin:28px 0;">
+
+        <h3 style="font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-4); margin-bottom:16px;">Education</h3>
+
+        <div class="cv-entry">
+          <div class="cv-date">2024–2026</div>
+          <div class="cv-content">
+            <div class="cv-title">M.S. — [Program name]</div>
+            <div class="cv-org">University of Chicago</div>
+            <div class="cv-desc">
+              Focus on environmental data science, geospatial computing, and scientific visualization.
+            </div>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <div class="cv-date">TBD</div>
+          <div class="cv-content">
+            <div class="cv-title">B.S. — [Degree name] ✏️</div>
+            <div class="cv-org">[Undergraduate institution] ✏️</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <a href="/" class="footer-brand">Andrew McGallian</a>
+      <div class="footer-links">
+        <a href="/projects/">Projects</a>
+        <a href="/research/">Research</a>
+        <a href="/courses/">Courses</a>
+        <a href="/about.html">About</a>
+      </div>
+    </div>
+    <div class="footer-inner" style="margin-top:8px;">
+      <span class="footer-copy">University of Chicago &middot; M.S. Candidate &middot; Data Visualization Fellow</span>
+    </div>
+  </footer>
+
+</body>
+</html>

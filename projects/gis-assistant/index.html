@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GIS Assistant — Andrew McGallian</title>
+  <meta name="description" content="Automated metadata curation system for the UChicago ArcGIS Online catalog.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="/" class="nav-brand">Andrew McGallian</a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/projects/" class="active">Projects</a></li>
+      <li><a href="/research/">Research</a></li>
+      <li><a href="/courses/">Courses</a></li>
+      <li><a href="/about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <header class="page-hero">
+    <div class="page-hero-inner">
+      <a href="/projects/" class="back-link">← Projects</a>
+      <p class="eyebrow">Data Curation · Automation · UChicago Library</p>
+      <h1>GIS Assistant</h1>
+      <p class="subtitle">
+        An automated pipeline that harvests, cleans, and tags geodata metadata from
+        the UChicago ArcGIS Online environment into a searchable catalog and geoportal dashboard.
+      </p>
+      <div class="meta-row">
+        <span class="meta-item">
+          <span class="label">Client</span>
+          UChicago Center for Digital Scholarship
+        </span>
+        <span class="meta-item">
+          <span class="label">Stack</span>
+          Python · SQLite · Flask
+        </span>
+      </div>
+      <div class="hero-actions">
+      </div>
+    </div>
+  </header>
+
+  <main class="site-main">
+    <div style="display:grid; grid-template-columns: 1fr 280px; gap: 52px; align-items: start;">
+
+      <div class="prose">
+
+        <h2>Overview</h2>
+        <p>
+          The UChicago ArcGIS Online environment hosts hundreds of geodatasets contributed by
+          researchers, library staff, and students across the university. Without consistent
+          metadata tagging, finding relevant layers is difficult — items are inconsistently named,
+          described, and tagged.
+        </p>
+        <p>
+          GIS Assistant is a curation pipeline that automatically harvests item metadata via the
+          ArcGIS REST API, normalizes and cleans the records, and applies a controlled vocabulary
+          of tags to improve discoverability. Results are stored in a SQLite database and surfaced
+          through a lightweight Flask geoportal dashboard.
+        </p>
+
+        <div class="callout amber">
+          <p class="callout-title">Context</p>
+          <p>
+            Developed as part of my Data Visualization Fellowship at the UChicago Library,
+            in support of the Center for Digital Scholarship's geodata discoverability initiative.
+          </p>
+        </div>
+
+        <h2>Pipeline</h2>
+
+        <div class="skills-list">
+          <div class="skill-item">
+            <div class="skill-dot"></div>
+            <div>
+              <div class="skill-name"><code>harvest_arcgis.py</code> — Metadata collection</div>
+              <div class="skill-note">Queries the ArcGIS Online REST API to pull item records (title, description, tags, owner, date, type) into a raw SQLite table.</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-dot"></div>
+            <div>
+              <div class="skill-name"><code>clean_catalog.py</code> — Normalization</div>
+              <div class="skill-note">Deduplicates entries, normalizes field values, strips boilerplate text, and flags items with missing or inadequate metadata.</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-dot"></div>
+            <div>
+              <div class="skill-name"><code>tag_catalog.py</code> — Controlled tagging</div>
+              <div class="skill-note">Applies a controlled vocabulary to each item based on title, description, and layer type — supporting themes like hydrology, demographics, and transportation.</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-dot"></div>
+            <div>
+              <div class="skill-name"><code>catalog_pipeline.py</code> — Orchestration</div>
+              <div class="skill-note">Runs the full harvest → clean → tag sequence and reports summary statistics on catalog completeness.</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-dot"></div>
+            <div>
+              <div class="skill-name"><code>geoportal_proj/</code> — Dashboard</div>
+              <div class="skill-note">Flask web app that reads the curated SQLite database and exposes a searchable, filterable interface for browsing the catalog.</div>
+            </div>
+          </div>
+        </div>
+
+        <h2>Databases</h2>
+        <p>
+          The project maintains two SQLite databases:
+        </p>
+        <ul>
+          <li><strong>camel_cache.db</strong> — raw harvested records and intermediate processing state</li>
+          <li><strong>isac_geodata.db</strong> — cleaned, tagged, production-ready catalog entries</li>
+        </ul>
+
+        <h2>Impact</h2>
+        <p>
+          The catalog pipeline substantially reduced the manual effort required to maintain the
+          UChicago geodata inventory. The geoportal dashboard gives library staff and researchers
+          a single interface for browsing and auditing the full ArcGIS Online catalog with
+          faceted filtering by theme, data type, and completeness score.
+        </p>
+
+      </div>
+
+      <!-- Sidebar -->
+      <aside style="display:flex; flex-direction:column; gap:20px; position:sticky; top:84px;">
+
+        <div style="background:var(--paper-0); border:1px solid var(--border); border-radius:var(--panel-radius); padding:18px 20px;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; letter-spacing:0.10em; text-transform:uppercase; color:var(--ink-4); margin-bottom:14px;">Tech Stack</div>
+          <div class="tech-stack" style="flex-direction:column; gap:6px; margin:0;">
+            <div class="tech-item">Python</div>
+            <div class="tech-item">SQLite</div>
+            <div class="tech-item">Flask</div>
+            <div class="tech-item">ArcGIS REST API</div>
+            <div class="tech-item">pandas</div>
+            <div class="tech-item">requests</div>
+          </div>
+        </div>
+
+        <div style="background:var(--paper-0); border:1px solid var(--border); border-radius:var(--panel-radius); padding:18px 20px;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; letter-spacing:0.10em; text-transform:uppercase; color:var(--ink-4); margin-bottom:14px;">Topics</div>
+          <div class="tag-row">
+            <span class="tag blue">Data curation</span>
+            <span class="tag blue">Metadata</span>
+            <span class="tag">GIS catalog</span>
+            <span class="tag">Web scraping</span>
+            <span class="tag">Controlled vocabulary</span>
+            <span class="tag">Geoportal</span>
+          </div>
+        </div>
+
+      </aside>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <a href="/" class="footer-brand">Andrew McGallian</a>
+      <div class="footer-links">
+        <a href="/projects/">Projects</a>
+        <a href="/research/">Research</a>
+        <a href="/courses/">Courses</a>
+        <a href="/about.html">About</a>
+      </div>
+    </div>
+    <div class="footer-inner" style="margin-top:8px;">
+      <span class="footer-copy">University of Chicago &middot; M.S. Candidate &middot; Data Visualization Fellow</span>
+    </div>
+  </footer>
+
+</body>
+</html>

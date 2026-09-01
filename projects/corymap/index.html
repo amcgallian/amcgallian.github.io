@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>North Syrian Inscriptions Map — Andrew McGallian</title>
+  <meta name="description" content="A reproducible geocoding pipeline and publication map of Luwian and Semitic Alphabetic inscription findspots in Anatolia and North Syria.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="/" class="nav-brand">Andrew McGallian</a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/projects/" class="active">Projects</a></li>
+      <li><a href="/research/">Research</a></li>
+      <li><a href="/courses/">Courses</a></li>
+      <li><a href="/about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <header class="page-hero">
+    <div class="page-hero-inner">
+      <a href="/projects/" class="back-link">← Projects</a>
+      <p class="eyebrow">Publication Cartography · Reproducible Pipeline</p>
+      <h1>North Syrian Inscriptions Map</h1>
+      <p class="subtitle">
+        A reproducible geocoding pipeline and publication map locating Hieroglyphic Luwian and
+        Semitic Alphabetic inscription findspots across Anatolia and North Syria, built for a
+        research map for the Türkmen-Karahöyük Archaeological Project.
+      </p>
+      <div class="meta-row">
+        <span class="meta-item">
+          <span class="label">Findspots</span>
+          ~72 inscriptions
+        </span>
+        <span class="meta-item">
+          <span class="label">Gazetteer</span>
+          2,910 candidate points
+        </span>
+        <span class="meta-item">
+          <span class="label">Output</span>
+          600 DPI, colour + greyscale
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <main class="site-main">
+    <div class="prose" style="max-width: 760px;">
+
+      <h2>Overview</h2>
+      <p>
+        The source list of ~72 Luwian and Semitic Alphabetic inscription sites had names but no
+        coordinates. The only available gazetteer covering the region — a general Ancient Near East
+        KMZ file — had coordinates but 2,910 points and no reliable index by inscription type. The
+        project's job was closing that gap: matching each named site against the gazetteer and
+        producing a clean, sourced point layer ready for cartography.
+      </p>
+
+      <h2>The matching problem</h2>
+      <p>
+        Ancient Near East sites are routinely referred to by multiple names — an ancient name, a
+        modern name, sometimes both in the same gazetteer entry formatted as
+        <code>Ancient Name (Modern Name)</code> or with alternates separated by slashes. The pipeline
+        splits each gazetteer entry into its name variants before matching, so a site named one way in
+        the inscription list still resolves against a gazetteer entry recorded under a different name.
+      </p>
+
+      <h2>Pipeline</h2>
+      <p>
+        Built as a single reproducible Jupyter notebook — every step from parsing to validation runs
+        as a documented, re-runnable cell, so the match can be re-checked or extended later without
+        reconstructing the process from memory. The notebook's job stops at producing a clean, correct
+        site table; the final cartography (basemap, hillshade, symbology) was done separately in QGIS.
+      </p>
+
+      <h2>Output</h2>
+      <p>
+        The sourced dataset ships as CSV, GeoJSON, and GeoPackage. The final publication map was
+        produced in QGIS with custom hillshade and DEM styling and label conventions matching
+        published academic convention (unbracketed = modern name, bracketed = ancient name,
+        underlined = archaeological site), exported at 600 DPI in both colour and greyscale.
+      </p>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <a href="/" class="footer-brand">Andrew McGallian</a>
+      <div class="footer-links">
+        <a href="/projects/">Projects</a>
+        <a href="/research/">Research</a>
+        <a href="/courses/">Courses</a>
+        <a href="/about.html">About</a>
+      </div>
+    </div>
+    <div class="footer-inner" style="margin-top:8px;">
+      <span class="footer-copy">University of Chicago &middot; M.S. Environmental Science</span>
+    </div>
+  </footer>
+
+</body>
+</html>

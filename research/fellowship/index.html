@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Visualization Fellowship — Andrew McGallian</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="/" class="nav-brand">Andrew McGallian</a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/projects/">Projects</a></li>
+      <li><a href="/research/" class="active">Research</a></li>
+      <li><a href="/courses/">Courses</a></li>
+      <li><a href="/about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <header class="page-hero">
+    <div class="page-hero-inner">
+      <a href="/research/" class="back-link">← Research</a>
+      <p class="eyebrow">UChicago Library · Center for Digital Scholarship</p>
+      <h1>Data Visualization Fellowship</h1>
+      <p class="subtitle">
+        Three-quarter fellowship designing and delivering geocomputation, GIS, and
+        data visualization workshops for the University of Chicago community.
+      </p>
+      <div class="meta-row">
+        <span class="meta-item">
+          <span class="label">Period</span>
+          Autumn 2025 – Spring 2026
+        </span>
+        <span class="meta-item">
+          <span class="label">Quarters</span>
+          3 workshops delivered
+        </span>
+        <span class="meta-item">
+          <span class="label">Host</span>
+          UChicago Library, CDS
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <main class="site-main">
+    <div style="display:grid; grid-template-columns: 1fr 280px; gap: 52px; align-items: start;">
+
+      <div class="prose">
+
+        <h2>Overview</h2>
+        <p>
+          As a Data Visualization Fellow at the University of Chicago's Center for Digital Scholarship,
+          I design and deliver hands-on technical workshops introducing researchers, students, and
+          library staff to geospatial tools and methods. The fellowship spans three academic quarters,
+          with each quarter featuring a distinct workshop topic and audience.
+        </p>
+        <p>
+          In parallel with teaching, I built the Chicago Environmental Atlas — a flagship interactive
+          map for the CDS — and contributed to the library's geodata infrastructure through the
+          GIS Assistant curation pipeline.
+        </p>
+
+        <h2>Workshops</h2>
+
+        <h3>Spring 2026 — Geocomputation with Python</h3>
+        <p>
+          Hands-on workshop covering spatial analysis with Python, targeting researchers already
+          comfortable with Python basics. Topics included vector data manipulation with GeoPandas,
+          raster processing with Rasterio, Landsat land surface temperature extraction, and
+          working with CTA/Census geodata for Chicago.
+        </p>
+        <div class="tag-row" style="margin-bottom:20px;">
+          <span class="tag blue">GeoPandas</span>
+          <span class="tag blue">Rasterio</span>
+          <span class="tag">Landsat LST</span>
+          <span class="tag">CTA data</span>
+          <span class="tag">Census geometries</span>
+          <span class="tag">Jupyter</span>
+        </div>
+
+        <h3>Winter 2026 — ArcGIS Online &amp; Survey123</h3>
+        <p>
+          Workshop introducing the UChicago ArcGIS Online environment and Survey123 for field
+          data collection. Participants learned to publish web maps, configure smart forms for
+          field surveys, and integrate collected data back into a web GIS workflow.
+        </p>
+        <div class="tag-row" style="margin-bottom:20px;">
+          <span class="tag">ArcGIS Online</span>
+          <span class="tag">Survey123</span>
+          <span class="tag">Web maps</span>
+          <span class="tag">Field data collection</span>
+        </div>
+
+        <h3>Autumn 2025 — Introduction to ArcGIS Online</h3>
+        <p>
+          Introductory workshop for community members new to GIS. Covered the ArcGIS Online
+          interface, layer management, symbology, and basic spatial analysis using real Chicago
+          datasets including CTA rail stations, community areas, libraries, and ACS demographic data.
+          Cook County 2020 aerial imagery was used as a basemap context.
+        </p>
+        <div class="tag-row" style="margin-bottom:20px;">
+          <span class="tag">ArcGIS Online</span>
+          <span class="tag">CTA data</span>
+          <span class="tag">Community areas</span>
+          <span class="tag">ACS demographics</span>
+          <span class="tag">Aerial imagery</span>
+        </div>
+
+        <h2>Fellowship Outputs</h2>
+        <ul>
+          <li>3 full workshop curricula with presentation materials and datasets</li>
+          <li>Chicago Environmental Atlas — production web application for the CDS</li>
+          <li>UChicago Dissertations 1893–2025 — cohort visualization project</li>
+          <li>GIS Assistant — automated geodata catalog curation pipeline</li>
+          <li>Fellowship proposal document outlining research objectives</li>
+        </ul>
+
+        <div class="callout blue">
+          <p class="callout-title">Chicago Environmental Atlas</p>
+          <p>
+            The atlas was developed as the flagship deliverable of the fellowship —
+            an interactive, time-series map of Chicago's environmental history built
+            for public access through the UChicago Library. <a href="/projects/chicago-atlas/">View the atlas →</a>
+          </p>
+        </div>
+
+        <div class="callout amber">
+          <p class="callout-title">UChicago Dissertations, 1893–2025</p>
+          <p>
+            The cohort project for the fellowship: an interactive four-panel visualization
+            of ~32,000 dissertations across 132 years, combining NLP, GIS, and a novel
+            "ring species" analysis of interdisciplinary overlap. <a href="/projects/dissertations-viz/">View the project →</a>
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Sidebar -->
+      <aside style="display:flex; flex-direction:column; gap:20px; position:sticky; top:84px;">
+
+        <div style="background:var(--paper-0); border:1px solid var(--border); border-radius:var(--panel-radius); padding:18px 20px;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; letter-spacing:0.10em; text-transform:uppercase; color:var(--ink-4); margin-bottom:14px;">Skills Developed</div>
+          <div class="skills-list" style="gap:6px;">
+            <div class="skill-item" style="padding:8px 12px;">
+              <div class="skill-dot"></div>
+              <div><div class="skill-name">Curriculum design</div></div>
+            </div>
+            <div class="skill-item" style="padding:8px 12px;">
+              <div class="skill-dot"></div>
+              <div><div class="skill-name">Workshop facilitation</div></div>
+            </div>
+            <div class="skill-item" style="padding:8px 12px;">
+              <div class="skill-dot"></div>
+              <div><div class="skill-name">Spatial Python</div></div>
+            </div>
+            <div class="skill-item" style="padding:8px 12px;">
+              <div class="skill-dot"></div>
+              <div><div class="skill-name">ArcGIS Online admin</div></div>
+            </div>
+            <div class="skill-item" style="padding:8px 12px;">
+              <div class="skill-dot"></div>
+              <div><div class="skill-name">Scientific communication</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:var(--paper-0); border:1px solid var(--border); border-radius:var(--panel-radius); padding:18px 20px;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; letter-spacing:0.10em; text-transform:uppercase; color:var(--ink-4); margin-bottom:12px;">Related Work</div>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <a href="/projects/chicago-atlas/" style="font-size:13px; font-weight:500; color:var(--blue);">Chicago Environmental Atlas →</a>
+            <a href="/projects/gis-assistant/" style="font-size:13px; font-weight:500; color:var(--blue);">GIS Assistant →</a>
+          </div>
+        </div>
+
+      </aside>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <a href="/" class="footer-brand">Andrew McGallian</a>
+      <div class="footer-links">
+        <a href="/projects/">Projects</a>
+        <a href="/research/">Research</a>
+        <a href="/courses/">Courses</a>
+        <a href="/about.html">About</a>
+      </div>
+    </div>
+    <div class="footer-inner" style="margin-top:8px;">
+      <span class="footer-copy">University of Chicago &middot; M.S. Candidate &middot; Data Visualization Fellow</span>
+    </div>
+  </footer>
+
+</body>
+</html>

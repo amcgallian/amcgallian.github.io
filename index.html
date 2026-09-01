@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Andrew McGallian</title>
+  <meta name="description" content="Geospatial data scientist and data visualization fellow at the University of Chicago.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <!-- ── Navigation ── -->
+  <nav class="site-nav">
+    <a href="/" class="nav-brand">Andrew McGallian</a>
+    <ul class="nav-links">
+      <li><a href="/" class="active">Home</a></li>
+      <li><a href="/projects/">Projects</a></li>
+      <li><a href="/research/">Research</a></li>
+      <li><a href="/courses/">Courses</a></li>
+      <li><a href="/about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── Hero ── -->
+  <header class="home-hero">
+    <div class="home-hero-inner">
+      <p class="eyebrow">University of Chicago &middot; Data Visualization Fellow</p>
+      <h1>Andrew McGallian</h1>
+      <p class="hero-sub">
+        Geospatial data scientist building tools at the intersection of
+        environment, computation, and visualization. M.S. candidate at
+        UChicago; Data Visualization Fellow at the Center for Digital Scholarship.
+      </p>
+      <div class="hero-actions">
+        <a href="/projects/" class="btn btn-primary">View Projects</a>
+        <a href="/about.html" class="btn btn-secondary">About Me</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── Main Content ── -->
+  <main class="site-main">
+
+    <!-- Showcase -->
+    <section class="portfolio-section">
+      <div class="section-header">
+        <h2>Showcase</h2>
+        <span class="section-count">6 projects</span>
+        <a href="/projects/" class="see-all">All projects →</a>
+      </div>
+
+      <div class="card-grid">
+
+        <!-- TKAP Tools -->
+        <a href="/projects/tkap-tools/" class="project-card featured">
+          <span class="card-eyebrow">Flagship · Open Source · Live on GitHub</span>
+          <h3 class="card-title">TKAP Tools</h3>
+          <p class="card-desc">
+            A published QGIS plugin used in the field by the Türkmen-Karahöyük Archaeological
+            Project — converting GNSS survey points into stratigraphic polygons, splitting
+            excavation phases, and drawing sections, distributed through a self-updating
+            plugin repository.
+          </p>
+          <div class="tag-row">
+            <span class="tag blue">Python</span>
+            <span class="tag blue">PyQGIS</span>
+            <span class="tag">GPL-2.0</span>
+            <span class="tag">Open source</span>
+          </div>
+          <div class="card-footer">
+            <span class="card-cta">View project </span>
+            <span class="tag amber">Public repo</span>
+          </div>
+        </a>
+
+        <!-- Chicago Environmental Atlas -->
+        <a href="/projects/chicago-atlas/" class="project-card">
+          <span class="card-eyebrow">Full-Stack Web App</span>
+          <h3 class="card-title">Chicago Environmental Atlas</h3>
+          <p class="card-desc">
+            A Flask web app mapping 150 years of Chicago's environmental and ecological
+            change — land surface temperature, vegetation cover, hydrology, and
+            biodiversity. Built for the UChicago Center for Digital Scholarship.
+          </p>
+          <div class="tag-row">
+            <span class="tag blue">Python · Flask</span>
+            <span class="tag blue">JavaScript</span>
+            <span class="tag blue">Leaflet</span>
+            <span class="tag">GeoPandas</span>
+            <span class="tag">Vega-Lite</span>
+          </div>
+          <div class="card-footer">
+            <span class="card-cta">View project </span>
+          </div>
+        </a>
+
+        <!-- Make It Rain -->
+        <a href="/projects/make-it-rain/" class="project-card">
+          <span class="card-eyebrow">MS Capstone · Environmental Data Science</span>
+          <h3 class="card-title">Cloud Seeding Efficacy</h3>
+          <p class="card-desc">
+            Autoencoder-based anomaly detection on NEXRAD weather radar imagery.
+            End-to-end pipeline from raw Level-II data through tile preprocessing,
+            CNN training, and publication-quality visualization — designed for HPC clusters.
+          </p>
+          <div class="tag-row">
+            <span class="tag blue">PyTorch</span>
+            <span class="tag blue">Rasterio</span>
+            <span class="tag">scikit-learn</span>
+            <span class="tag">SLURM</span>
+            <span class="tag">marimo</span>
+          </div>
+          <div class="card-footer">
+            <span class="card-cta">View project </span>
+            <span class="tag">Python</span>
+          </div>
+        </a>
+
+        <!-- Dissertations Viz -->
+        <a href="/projects/dissertations-viz/" class="project-card">
+          <span class="card-eyebrow">Data Viz Fellowship · Cohort Project</span>
+          <h3 class="card-title">UChicago Dissertations, 1893–2025</h3>
+          <p class="card-desc">
+            Interactive visualization of ~32,000 dissertations across 132 years. Campus choropleth,
+            global research focus map, interdisciplinary networks, and a "ring species" analysis
+            of intellectual similarity across UChicago departments.
+          </p>
+          <div class="tag-row">
+            <span class="tag blue">spaCy · NLP</span>
+            <span class="tag blue">GeoPandas</span>
+            <span class="tag">Leaflet</span>
+            <span class="tag">TF-IDF</span>
+          </div>
+          <div class="card-footer">
+            <span class="card-cta">View project </span>
+          </div>
+        </a>
+
+        <!-- AOD -->
+        <a href="/projects/aod/" class="project-card">
+          <span class="card-eyebrow">Remote Sensing · Air Quality</span>
+          <h3 class="card-title">AOD Distribution Changes, 2003–2023</h3>
+          <p class="card-desc">
+            Twenty-year MODIS satellite analysis of global aerosol optical depth — Mann-Kendall
+            trend detection, population exposure modeling, and machine learning forecasting
+            reveal a geographic redistribution of aerosol burden from developed to developing regions.
+          </p>
+          <div class="tag-row">
+            <span class="tag blue">MODIS · xarray</span>
+            <span class="tag blue">Mann-Kendall</span>
+            <span class="tag">ARIMA</span>
+            <span class="tag">Random Forest</span>
+          </div>
+          <div class="card-footer">
+            <span class="card-cta">View project </span>
+          </div>
+        </a>
+
+        <a href="/projects/corymap/" class="project-card">
+          <span class="card-eyebrow">Publication Cartography · Reproducible Pipeline</span>
+          <h3 class="card-title">North Syrian Inscriptions Map</h3>
+          <p class="card-desc">
+            A reproducible geocoding pipeline resolving ~72 Luwian and Semitic Alphabetic inscription
+            findspots against a 2,910-point gazetteer, delivered as a sourced dataset and a 600 DPI
+            publication map for the Türkmen-Karahöyük Archaeological Project.
+          </p>
+          <div class="tag-row">
+            <span class="tag blue">Python</span>
+            <span class="tag blue">Jupyter</span>
+            <span class="tag">QGIS</span>
+            <span class="tag">Cartography</span>
+          </div>
+          <div class="card-footer">
+            <span class="card-cta">View project </span>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- Research & Fellowship -->
+    <section class="portfolio-section">
+      <div class="section-header">
+        <h2>Research &amp; Fellowship</h2>
+        <a href="/research/" class="see-all">All research →</a>
+      </div>
+
+      <div class="card-grid">
+
+        <a href="/research/fellowship/" class="project-card">
+          <span class="card-eyebrow">UChicago Library · 2025–2026</span>
+          <h3 class="card-title">Data Visualization Fellowship</h3>
+          <p class="card-desc">
+            Fellow at the Center for Digital Scholarship — delivering geocomputation workshops,
+            building the Chicago Environmental Atlas, and producing the UChicago Dissertations
+            visualization as a cohort project.
+          </p>
+          <div class="tag-row">
+            <span class="tag amber">Fellowship</span>
+            <span class="tag">ArcGIS Online</span>
+            <span class="tag">Spatial Python</span>
+            <span class="tag">Curriculum design</span>
+          </div>
+          <div class="card-footer">
+            <span class="card-cta">View fellowship </span>
+          </div>
+        </a>
+
+        <a href="/research/blattler-lab/" class="project-card">
+          <span class="card-eyebrow">Geochemistry Lab · UChicago</span>
+          <h3 class="card-title">Blattler Lab</h3>
+          <p class="card-desc">
+            Paleoclimatology and biogeochemistry research. Worked with geological
+            core samples, sulfur isotope analysis, and Triassic climate reconstruction.
+          </p>
+          <div class="tag-row">
+            <span class="tag amber">Research</span>
+            <span class="tag">Paleoclimate</span>
+            <span class="tag">Geochemistry</span>
+            <span class="tag">Core analysis</span>
+          </div>
+          <div class="card-footer">
+            <span class="card-cta">View research </span>
+          </div>
+        </a>
+
+        <a href="/research/ef/" class="project-card">
+          <span class="card-eyebrow">Urban Climate · AGU 2024</span>
+          <h3 class="card-title">Environmental Frontiers</h3>
+          <p class="card-desc">
+            Urban heat island analysis across Chicago — Landsat satellite thermal imagery,
+            M-TEMP mobile sensor carts, GPS tracking, and ArcGIS Survey123 field surveys.
+            Resulted in an open-source Python module and an AGU 2024 poster.
+          </p>
+          <div class="tag-row">
+            <span class="tag amber">AGU 2024</span>
+            <span class="tag">Remote sensing</span>
+            <span class="tag">Mobile sensing</span>
+            <span class="tag">Open source</span>
+          </div>
+          <div class="card-footer">
+            <span class="card-cta">View research </span>
+          </div>
+        </a>
+
+        <a href="/research/tkap/" class="project-card">
+          <span class="card-eyebrow">TKAP Fellowship · Summer 2026</span>
+          <h3 class="card-title">Research Trip to Turkey</h3>
+          <p class="card-desc">
+            Upcoming research in Turkey through the TKAP fellowship program.
+            Details to follow once the trip is underway.
+          </p>
+          <div class="tag-row">
+            <span class="tag amber">Coming Summer 2026</span>
+            <span class="tag">TKAP</span>
+            <span class="tag">Turkey</span>
+          </div>
+          <div class="card-footer">
+            <span class="card-cta">View page </span>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- Coursework -->
+    <section class="portfolio-section">
+      <div class="section-header">
+        <h2>Academic Coursework</h2>
+        <span class="section-count">5 courses</span>
+        <a href="/courses/" class="see-all">All courses →</a>
+      </div>
+
+      <div class="card-grid">
+
+        <a href="/courses/env-data-science/" class="project-card">
+          <span class="card-eyebrow">Graduate · Data Science</span>
+          <h3 class="card-title">Environmental Data Science</h3>
+          <p class="card-desc">
+            Spatial analysis, biodiversity data, and reproducible workflows. Labs
+            covering raster/vector analysis, species distribution modeling, and
+            environmental informatics.
+          </p>
+          <div class="tag-row">
+            <span class="tag">Python</span>
+            <span class="tag">GeoPandas</span>
+            <span class="tag">Rasterio</span>
+            <span class="tag">R</span>
+          </div>
+          <div class="card-footer"><span class="card-cta">View course </span></div>
+        </a>
+
+        <a href="/courses/remote-sensing/" class="project-card">
+          <span class="card-eyebrow">Graduate · Remote Sensing</span>
+          <h3 class="card-title">Introduction to Remote Sensing</h3>
+          <p class="card-desc">
+            Satellite image acquisition, preprocessing, and analysis. Landsat thermal
+            band processing, land cover classification, and change detection.
+          </p>
+          <div class="tag-row">
+            <span class="tag">Landsat</span>
+            <span class="tag">QGIS</span>
+            <span class="tag">Python</span>
+            <span class="tag">Rasterio</span>
+          </div>
+          <div class="card-footer"><span class="card-cta">View course </span></div>
+        </a>
+
+        <a href="/courses/intro-to-gis/" class="project-card">
+          <span class="card-eyebrow">Graduate · GIS</span>
+          <h3 class="card-title">Introduction to GIS</h3>
+          <p class="card-desc">
+            Fundamentals of geographic information systems — spatial data models,
+            coordinate systems, geoprocessing workflows, and cartographic design.
+          </p>
+          <div class="tag-row">
+            <span class="tag">ArcGIS Pro</span>
+            <span class="tag">QGIS</span>
+            <span class="tag">Spatial SQL</span>
+          </div>
+          <div class="card-footer"><span class="card-cta">View course </span></div>
+        </a>
+
+        <a href="/courses/climate-ethics/" class="project-card">
+          <span class="card-eyebrow">Graduate · Ethics</span>
+          <h3 class="card-title">Climate Ethics</h3>
+          <p class="card-desc">
+            Philosophical and policy dimensions of climate change — intergenerational
+            justice, geoengineering ethics, and the obligations of environmental scientists.
+          </p>
+          <div class="tag-row">
+            <span class="tag">Concept paper</span>
+            <span class="tag">Policy analysis</span>
+          </div>
+          <div class="card-footer"><span class="card-cta">View course </span></div>
+        </a>
+
+        <a href="/courses/ecopoetics/" class="project-card">
+          <span class="card-eyebrow">Graduate · Ecology &amp; Literature</span>
+          <h3 class="card-title">Ecopoetics</h3>
+          <p class="card-desc">
+            Ecology and literary imagination. Produced a Quarto poetry chapbook
+            (<em>My Week of Potatoes</em>) and an interactive Pokédex-style field guide
+            to bloodworm larvae.
+          </p>
+          <div class="tag-row">
+            <span class="tag amber">Creative project</span>
+            <span class="tag">Quarto</span>
+            <span class="tag">HTML/CSS</span>
+          </div>
+          <div class="card-footer"><span class="card-cta">View course </span></div>
+        </a>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <a href="/" class="footer-brand">Andrew McGallian</a>
+      <div class="footer-links">
+        <a href="/projects/">Projects</a>
+        <a href="/research/">Research</a>
+        <a href="/courses/">Courses</a>
+        <a href="/about.html">About</a>
+      </div>
+    </div>
+    <div class="footer-inner" style="margin-top:8px;">
+      <span class="footer-copy">University of Chicago &middot; M.S. Candidate &middot; Data Visualization Fellow</span>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AOD Distribution Changes 2003–2023 — Andrew McGallian</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="/" class="nav-brand">Andrew McGallian</a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/projects/" class="active">Projects</a></li>
+      <li><a href="/research/">Research</a></li>
+      <li><a href="/courses/">Courses</a></li>
+      <li><a href="/about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <header class="page-hero">
+    <div class="page-hero-inner">
+      <a href="/projects/" class="back-link">← Projects</a>
+      <p class="eyebrow">Environmental Data Science II · Remote Sensing · MODIS</p>
+      <h1>AOD Distribution Changes, 2003–2023</h1>
+      <p class="subtitle">
+        Twenty-year analysis of global aerosol optical depth trends using MODIS Terra and Aqua.
+        Combines distribution analysis, Mann-Kendall trend detection, population exposure modeling,
+        and ARIMA + random forest forecasting to track where aerosol pollution is rising, falling,
+        and who bears the greatest burden.
+      </p>
+      <div class="meta-row">
+        <span class="meta-item">
+          <span class="label">Timespan</span>
+          2003–2023 (20 years)
+        </span>
+        <span class="meta-item">
+          <span class="label">Data</span>
+          MODIS Terra + Aqua
+        </span>
+        <span class="meta-item">
+          <span class="label">Course</span>
+          Environmental Data Science II
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <main class="site-main">
+    <div style="display:grid; grid-template-columns: 1fr 290px; gap: 52px; align-items: start;">
+
+      <div class="prose">
+
+        <h2>Overview</h2>
+        <p>
+          Aerosol optical depth (AOD) is the column-integrated measure of how much sunlight
+          is scattered or absorbed by aerosol particles suspended in the atmosphere. It is
+          one of the primary satellite-observable proxies for particulate air pollution —
+          directly linked to PM2.5 concentrations, respiratory health outcomes, and climate forcing.
+        </p>
+        <p>
+          This project applies twenty years of MODIS satellite retrievals (2003–2023) to answer:
+          how have global AOD distributions shifted over two decades? Which regions show consistent
+          improvement or deterioration? Who is exposed? And what does the near-term trajectory look like?
+        </p>
+
+        <h2>Data</h2>
+
+        <h3>MODIS Terra &amp; Aqua AOD</h3>
+        <p>
+          The primary dataset combines Level-3 monthly AOD retrievals from two MODIS instruments:
+          Terra (equatorial crossing ~10:30am) and Aqua (equatorial crossing ~1:30pm). Using both
+          sensors mitigates cloud and sampling bias artifacts that affect single-sensor products.
+          Data were accessed via NASA LAADS DAAC and processed using the MOD04/MYD04 550nm
+          Dark Target + Deep Blue merged AOD product.
+        </p>
+        <p>
+          The 20-year, dual-sensor monthly composites were assembled into a global gridded
+          time-series (0.1° resolution) — approximately 240 time steps per grid cell.
+        </p>
+
+        <h2>Analysis Pipeline</h2>
+
+        <h3>Distribution Analysis</h3>
+        <p>
+          Global and regional AOD distributions were characterized at decadal intervals (2003–2013,
+          2013–2023) using kernel density estimation, percentile analysis, and regional boxplot
+          comparisons. Key question: has the global AOD distribution shifted left (cleaner) or right
+          (more polluted) over the study period, and does that shift vary by region?
+        </p>
+        <p>
+          South Asia and East Africa show rightward shifts (rising AOD), while East Asia exhibits
+          a pronounced leftward shift driven by aggressive Chinese air quality regulations post-2013.
+          Europe and North America trend modestly cleaner throughout.
+        </p>
+
+        <h3>OLS &amp; Mann-Kendall Trend Detection</h3>
+        <p>
+          Pixel-level linear trends were estimated using ordinary least squares regression on the
+          20-year monthly AOD time series. Because AOD data often violate normality assumptions,
+          the nonparametric Mann-Kendall test was also applied to each pixel, confirming trend
+          direction and statistical significance without distributional assumptions.
+        </p>
+        <p>
+          The resulting trend maps show statistically significant AOD decline across much of
+          eastern China and parts of Europe, alongside significant increases across South Asia,
+          Sub-Saharan Africa, and portions of the Middle East — a geographic redistribution of
+          aerosol burden from the developed world to developing regions.
+        </p>
+
+        <h3>Population Exposure Modeling</h3>
+        <p>
+          AOD trend maps were overlaid with GPW (Gridded Population of the World) v4 population
+          density surfaces to compute population-weighted AOD exposure by region and decade.
+          This translates satellite-observed trends into public health framing: even modest AOD
+          increases in densely populated South Asian cities translate to disproportionately large
+          increases in exposed person-years.
+        </p>
+        <p>
+          Results show that roughly 2.1 billion people (2020 population base) reside in areas
+          with statistically significant positive AOD trends — disproportionately concentrated
+          in South Asia and Sub-Saharan Africa.
+        </p>
+
+        <h3>ARIMA Forecasting</h3>
+        <p>
+          Regional mean AOD time series were modeled using ARIMA with seasonal decomposition
+          (SARIMA) to project AOD values 5–10 years forward (2024–2033). The ARIMA order was
+          selected via AIC/BIC on a grid search, with residual autocorrelation checked via
+          Ljung-Box tests. Forecast uncertainty intervals widen appropriately for longer horizons.
+        </p>
+
+        <h3>Random Forest Prediction</h3>
+        <p>
+          A random forest regression model was trained to predict future AOD using lagged AOD
+          values, land cover type, population density, GDP per capita, and fire activity indices
+          as features. The ensemble model captures nonlinear relationships and interactions
+          that ARIMA misses — particularly the sensitivity of AOD to land use change and
+          economic development trajectories.
+        </p>
+        <p>
+          Feature importance analysis confirms that lagged AOD and fire activity dominate
+          predictions globally, while GDP-related features become more important in regions
+          undergoing rapid industrial transition.
+        </p>
+
+        <div class="callout blue">
+          <p class="callout-title">Key Finding</p>
+          <p>
+            Global mean AOD has declined slightly over 2003–2023, but this aggregate masks a
+            geographic redistribution: aerosol burden is shifting from East Asia and Europe
+            (improving) to South Asia and Sub-Saharan Africa (worsening). Population-weighted
+            exposure has increased because the highest-growth polluted regions also have the
+            highest population densities.
+          </p>
+        </div>
+
+        <div class="callout amber">
+          <p class="callout-title">Policy Implication</p>
+          <p>
+            The divergent regional trajectories suggest that global air quality progress is
+            uneven and increasingly driven by regulatory capacity rather than technology.
+            Regions without strong air quality frameworks are absorbing the AOD burden that
+            regulated economies have shed.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Sidebar -->
+      <aside style="display:flex; flex-direction:column; gap:20px; position:sticky; top:84px;">
+
+        <div style="background:var(--paper-0); border:1px solid var(--border); border-radius:var(--panel-radius); padding:18px 20px;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; letter-spacing:0.10em; text-transform:uppercase; color:var(--ink-4); margin-bottom:14px;">Tech Stack</div>
+          <div class="tech-stack" style="flex-direction:column; gap:6px; margin:0;">
+            <div class="tech-item">Python · xarray</div>
+            <div class="tech-item">MODIS (Terra + Aqua)</div>
+            <div class="tech-item">GeoPandas · Rasterio</div>
+            <div class="tech-item">pyMannKendall</div>
+            <div class="tech-item">statsmodels (SARIMA)</div>
+            <div class="tech-item">scikit-learn (RF)</div>
+            <div class="tech-item">matplotlib · cartopy</div>
+          </div>
+        </div>
+
+        <div style="background:var(--paper-0); border:1px solid var(--border); border-radius:var(--panel-radius); padding:18px 20px;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; letter-spacing:0.10em; text-transform:uppercase; color:var(--ink-4); margin-bottom:14px;">Scale</div>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div>
+              <div style="font-family:'IBM Plex Mono',monospace; font-size:20px; font-weight:600; color:var(--ink-0);">20</div>
+              <div style="font-size:11px; color:var(--ink-4);">years of satellite data</div>
+            </div>
+            <div>
+              <div style="font-family:'IBM Plex Mono',monospace; font-size:20px; font-weight:600; color:var(--ink-0);">240</div>
+              <div style="font-size:11px; color:var(--ink-4);">monthly composites (per sensor)</div>
+            </div>
+            <div>
+              <div style="font-family:'IBM Plex Mono',monospace; font-size:20px; font-weight:600; color:var(--ink-0);">0.1°</div>
+              <div style="font-size:11px; color:var(--ink-4);">global grid resolution</div>
+            </div>
+            <div>
+              <div style="font-family:'IBM Plex Mono',monospace; font-size:20px; font-weight:600; color:var(--ink-0);">2.1B</div>
+              <div style="font-size:11px; color:var(--ink-4);">people in rising-AOD regions</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:var(--paper-0); border:1px solid var(--border); border-radius:var(--panel-radius); padding:18px 20px;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; letter-spacing:0.10em; text-transform:uppercase; color:var(--ink-4); margin-bottom:10px;">Related</div>
+          <a href="/courses/env-data-science/" style="font-size:13px; font-weight:500; color:var(--blue); display:block; margin-bottom:6px;">Environmental Data Science →</a>
+          <a href="/projects/make-it-rain/" style="font-size:13px; font-weight:500; color:var(--blue); display:block; margin-bottom:6px;">Make It Rain (radar ML) →</a>
+          <a href="/research/ef/" style="font-size:13px; font-weight:500; color:var(--blue);">Environmental Frontiers →</a>
+        </div>
+
+      </aside>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <a href="/" class="footer-brand">Andrew McGallian</a>
+      <div class="footer-links">
+        <a href="/projects/">Projects</a>
+        <a href="/research/">Research</a>
+        <a href="/courses/">Courses</a>
+        <a href="/about.html">About</a>
+      </div>
+    </div>
+    <div class="footer-inner" style="margin-top:8px;">
+      <span class="footer-copy">University of Chicago &middot; M.S. Candidate &middot; Data Visualization Fellow</span>
+    </div>
+  </footer>
+
+</body>
+</html>

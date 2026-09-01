@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects — Andrew McGallian</title>
+  <meta name="description" content="Geospatial data science, ML pipelines, and data visualization projects.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="/" class="nav-brand">Andrew McGallian</a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/projects/" class="active">Projects</a></li>
+      <li><a href="/research/">Research</a></li>
+      <li><a href="/courses/">Courses</a></li>
+      <li><a href="/about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <header class="page-hero">
+    <div class="page-hero-inner">
+      <p class="eyebrow">Portfolio</p>
+      <h1>Projects</h1>
+      <p class="subtitle">
+        End-to-end builds spanning geospatial web applications, machine learning pipelines,
+        and data curation systems — each grounded in real environmental and scientific problems.
+      </p>
+    </div>
+  </header>
+
+  <main class="site-main">
+
+    <!-- Flagship -->
+    <section class="portfolio-section">
+      <div class="section-header">
+        <h2>Flagship</h2>
+        <span class="section-count">2 projects</span>
+      </div>
+      <div class="card-grid cols-2">
+        <a href="/projects/tkap-tools/" class="project-card featured">
+          <span class="card-eyebrow">Open Source · QGIS Plugin · Live on GitHub</span>
+          <h3 class="card-title">TKAP Tools</h3>
+          <p class="card-desc">
+            A published QGIS plugin used in the field by the Türkmen-Karahöyük Archaeological
+            Project — converting GNSS survey points into stratigraphic polygons, splitting
+            excavation phases, and drawing sections. Distributed through a self-hosted plugin
+            repository so the field team gets updates through QGIS itself.
+          </p>
+          <div class="tag-row">
+            <span class="tag blue">Python</span>
+            <span class="tag blue">PyQGIS</span>
+            <span class="tag">GPL-2.0</span>
+            <span class="tag">Open source</span>
+          </div>
+          <div class="card-footer">
+            <span class="card-cta">View project </span>
+            <span class="tag amber">Public repo</span>
+          </div>
+        </a>
+
+        <a href="/projects/chicago-atlas/" class="project-card">
+          <span class="card-eyebrow">Full-Stack Web App · UChicago CDS</span>
+          <h3 class="card-title">Chicago Environmental Atlas</h3>
+          <p class="card-desc">
+            A Flask web app mapping 150 years of Chicago's environmental and ecological change —
+            land surface temperature, vegetation cover, hydrology, and biodiversity — with a
+            timeline slider, polygon drawing, dual-panel comparison, and a data download portal.
+            Built for the UChicago Center for Digital Scholarship.
+          </p>
+          <div class="tag-row">
+            <span class="tag blue">Python · Flask</span>
+            <span class="tag blue">JavaScript (ES modules)</span>
+            <span class="tag blue">Leaflet</span>
+            <span class="tag">GeoPandas</span>
+            <span class="tag">Vega-Lite</span>
+            <span class="tag">Docker</span>
+          </div>
+          <div class="card-footer">
+            <span class="card-cta">View project </span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Core Projects -->
+    <section class="portfolio-section">
+      <div class="section-header">
+        <h2>Core Projects</h2>
+        <span class="section-count">7 projects</span>
+      </div>
+      <div class="card-grid">
+
+        <a href="/projects/make-it-rain/" class="project-card">
+          <span class="card-eyebrow">MS Capstone · Environmental Data Science</span>
+          <h3 class="card-title">Cloud Seeding Efficacy</h3>
+          <p class="card-desc">
+            Autoencoder-based anomaly detection on NEXRAD Level-II weather radar imagery.
+            End-to-end HPC-ready pipeline from raw data through preprocessing, CNN training,
+            and publication-quality visualization using PCA, clustering, and anomaly scoring.
+          </p>
+          <div class="tag-row">
+            <span class="tag blue">PyTorch</span>
+            <span class="tag blue">Rasterio</span>
+            <span class="tag">scikit-learn</span>
+            <span class="tag">SLURM</span>
+            <span class="tag">marimo</span>
+            <span class="tag">matplotlib</span>
+          </div>
+          <div class="card-footer">
+            <span class="card-cta">View project </span>
+          </div>
+        </a>
+
+        <a href="/projects/gis-assistant/" class="project-card">
+          <span class="card-eyebrow">Data Curation · Automation</span>
+          <h3 class="card-title">GIS Assistant</h3>
+          <p class="card-desc">
+            Automated metadata curation system for the UChicago ArcGIS Online catalog.
+            Harvests, cleans, and tags geodata metadata into a searchable SQLite database,
+            surfaced through a Flask geoportal dashboard.
+          </p>
+          <div class="tag-row">
+            <span class="tag blue">Python</span>
+            <span class="tag">SQLite</span>
+            <span class="tag">Flask</span>
+            <span class="tag">ArcGIS REST API</span>
+          </div>
+          <div class="card-footer">
+            <span class="card-cta">View project </span>
+          </div>
+        </a>
+
+        <a href="/projects/dissertations-viz/" class="project-card">
+          <span class="card-eyebrow">Data Viz Fellowship · Cohort Project</span>
+          <h3 class="card-title">UChicago Dissertations, 1893–2025</h3>
+          <p class="card-desc">
+            Interactive four-panel visualization of ~32,000 dissertations across 132 years.
+            Campus choropleth, global research focus, interdisciplinary networks, and a novel
+            "ring species" analysis — built with NLP, GIS, and Leaflet.
+          </p>
+          <div class="tag-row">
+            <span class="tag blue">spaCy · NLP</span>
+            <span class="tag blue">GeoPandas</span>
+            <span class="tag">Leaflet</span>
+            <span class="tag">TF-IDF</span>
+            <span class="tag">Chart.js</span>
+          </div>
+          <div class="card-footer">
+            <span class="card-cta">View project </span>
+          </div>
+        </a>
+
+        <a href="/projects/aod/" class="project-card">
+          <span class="card-eyebrow">Environmental Data Science II · Remote Sensing</span>
+          <h3 class="card-title">AOD Distribution Changes, 2003–2023</h3>
+          <p class="card-desc">
+            Twenty-year analysis of global aerosol optical depth using MODIS Terra and Aqua.
+            Mann-Kendall trend detection, population exposure modeling, and ARIMA + random forest
+            forecasting reveal a geographic redistribution of aerosol burden worldwide.
+          </p>
+          <div class="tag-row">
+            <span class="tag blue">MODIS · xarray</span>
+            <span class="tag blue">pyMannKendall</span>
+            <span class="tag">SARIMA</span>
+            <span class="tag">Random Forest</span>
+            <span class="tag">cartopy</span>
+          </div>
+          <div class="card-footer">
+            <span class="card-cta">View project </span>
+          </div>
+        </a>
+
+        <a href="/projects/biodiversity/" class="project-card">
+          <span class="card-eyebrow">Environmental Data Science · Ecological Analysis</span>
+          <h3 class="card-title">Revetment Biodiversity Study</h3>
+          <p class="card-desc">
+            Multi-site macroinvertebrate survey across five Chicago-area revetment habitats.
+            Alpha diversity, Shannon entropy, Bray-Curtis dissimilarity, NMDS ordination,
+            hierarchical clustering, and radar plots characterize community structure.
+          </p>
+          <div class="tag-row">
+            <span class="tag blue">NMDS ordination</span>
+            <span class="tag">Bray-Curtis</span>
+            <span class="tag">scikit-bio</span>
+            <span class="tag">Shannon entropy</span>
+          </div>
+          <div class="card-footer">
+            <span class="card-cta">View project </span>
+          </div>
+        </a>
+
+        <a href="/projects/irsa/" class="project-card">
+          <span class="card-eyebrow">Remote Sensing · Contra Costa County, CA</span>
+          <h3 class="card-title">Wildfire Risk Assessment</h3>
+          <p class="card-desc">
+            Multi-layer wildfire risk model integrating LIDAR canopy structure, LANDFIRE fuel type
+            classification, PRISM precipitation surfaces, and 10m DEM slope — combined into a
+            weighted multi-criteria risk surface and presented as a research poster.
+          </p>
+          <div class="tag-row">
+            <span class="tag">LIDAR</span>
+            <span class="tag">LANDFIRE</span>
+            <span class="tag">PRISM</span>
+            <span class="tag">ArcGIS Pro</span>
+            <span class="tag">DEM analysis</span>
+          </div>
+          <div class="card-footer">
+            <span class="card-cta">View project </span>
+          </div>
+        </a>
+
+        <a href="/projects/corymap/" class="project-card">
+          <span class="card-eyebrow">Publication Cartography · Reproducible Pipeline</span>
+          <h3 class="card-title">North Syrian Inscriptions Map</h3>
+          <p class="card-desc">
+            A reproducible geocoding pipeline resolving ~72 Luwian and Semitic Alphabetic inscription
+            findspots against a 2,910-point gazetteer, delivered as a sourced dataset and a 600 DPI
+            publication map for the Türkmen-Karahöyük Archaeological Project.
+          </p>
+          <div class="tag-row">
+            <span class="tag blue">Python</span>
+            <span class="tag blue">Jupyter</span>
+            <span class="tag">QGIS</span>
+            <span class="tag">Cartography</span>
+          </div>
+          <div class="card-footer">
+            <span class="card-cta">View project </span>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <a href="/" class="footer-brand">Andrew McGallian</a>
+      <div class="footer-links">
+        <a href="/projects/">Projects</a>
+        <a href="/research/">Research</a>
+        <a href="/courses/">Courses</a>
+        <a href="/about.html">About</a>
+      </div>
+    </div>
+    <div class="footer-inner" style="margin-top:8px;">
+      <span class="footer-copy">University of Chicago &middot; M.S. Candidate &middot; Data Visualization Fellow</span>
+    </div>
+  </footer>
+
+</body>
+</html>
