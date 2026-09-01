@@ -48,7 +48,10 @@ This site pre-existed and was mostly AI-generated without a fact-check pass. Fou
   archaeological field team). Added as the new flagship.
 - **North Syrian Inscriptions Map (CoryMap) was entirely absent.** Added — verified from the
   `FELLOWSHIP` drive: `CoryMap/pipeline.ipynb`, ~72 findspots matched against a 2,910-point KMZ
-  gazetteer, 600 DPI output in colour and greyscale.
+  gazetteer, 600 DPI output in colour and greyscale. **2026-09-01 correction:** the map was
+  commissioned by Cory Crawford (Ohio University) for one of his publications — TKAP is where Andrew
+  and Crawford met, not the commissioning project. Card/page copy corrected to credit Crawford, not
+  TKAP, as the recipient.
 - Removed 2 dead "GitHub →" buttons (dissertations-viz, gis-assistant) — no public repo exists for
   either project. Don't add a link back unless a real public repo exists.
 - Wired up the real headshot and CV in `about.html` (both files already existed in `assets/`, unused).
