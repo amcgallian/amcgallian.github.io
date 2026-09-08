@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Revetment Biodiversity Study — Andrew McGallian</title>
+  <title>Revetments of LaRabida and Promontory Point — Andrew McGallian</title>
+  <meta name="description" content="DNA barcoding and ArcGIS field survey of macroinvertebrate and plant communities across a Jackson Park lakefront revetment, comparing biodiversity against erosion-control performance.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -25,26 +26,25 @@
   <header class="page-hero">
     <div class="page-hero-inner">
       <a href="/projects/" class="back-link">← Projects</a>
-      <p class="eyebrow">Environmental Data Science · Ecological Analysis</p>
-      <h1>Revetment Biodiversity Study</h1>
+      <p class="eyebrow">Environmental Data Science · Field Ecology · DNA Barcoding</p>
+      <h1>Revetments of LaRabida and Promontory Point</h1>
       <p class="subtitle">
-        Multi-site ecological survey of macroinvertebrate communities across five
-        Chicago-area revetment habitats — combining alpha diversity, Shannon entropy,
-        Bray-Curtis dissimilarity, NMDS ordination, and hierarchical clustering
-        to characterize community structure and site similarity.
+        A field survey of two Jackson Park lakefront sites — combining DNA barcoding, morphological
+        identification, and an ArcGIS field survey to ask whether revetment design measurably shapes
+        biodiversity, and whether the best ecosystem is also the best erosion control.
       </p>
       <div class="meta-row">
         <span class="meta-item">
           <span class="label">Sites</span>
-          5 revetment locations
+          LaRabida (5 sections) + Promontory Point
         </span>
         <span class="meta-item">
-          <span class="label">Taxa</span>
-          ~10 macroinvertebrate groups
+          <span class="label">Team</span>
+          5-person, led by Andrew
         </span>
         <span class="meta-item">
           <span class="label">Course</span>
-          Environmental Data Science
+          Environmental Data Science, Spring 2025
         </span>
       </div>
     </div>
@@ -57,99 +57,93 @@
 
         <h2>Overview</h2>
         <p>
-          Revetments — engineered riparian structures of rock, concrete, or riprap —
-          line much of Chicago's lakefront and river edges. While they serve flood control
-          and erosion functions, their ecological value varies dramatically by substrate type,
-          structural complexity, and surrounding land use.
+          Revetments — engineered structures of rock, concrete, or rubble that armor a shoreline
+          against erosion — line much of Chicago's lakefront. This project asks whether the choice of
+          revetment design has a measurable effect on the biodiversity it supports, using two Jackson
+          Park sites: the <strong>LaRabida Children's Hospital</strong> shoreline, divided into five
+          structurally distinct sections (Revetments 1–5), and <strong>Promontory Point</strong>, used
+          as a qualitative comparison site.
         </p>
         <p>
-          This project surveys macroinvertebrate communities across five revetment sites in the
-          Chicago area, applying a full suite of community ecology metrics to quantify how
-          biodiversity and species composition differ between sites and what structural features
-          drive those differences.
+          I led a 5-person team (with Clara Deimling, Sanju Patel, Christian Herrera, and Nic Restivo)
+          through six weeks of field sampling, DNA barcoding in the lab, and the spatial/statistical
+          analysis that turned raw specimens into a site-by-site biodiversity comparison.
         </p>
 
-        <h2>Study Design</h2>
+        <h2>Field &amp; Lab Methods</h2>
 
-        <h3>Site Selection</h3>
+        <h3>Specimen Collection</h3>
         <p>
-          Five revetment sites were selected to span a gradient of structural and habitat
-          complexity — from simple concrete seawalls to complex riprap edges with
-          intersticial crevice habitat. Sites varied in substrate type, riparian vegetation
-          cover, and degree of urban encroachment.
+          Field work ran twice a week for four weeks at LaRabida and Promontory Point. Every uniquely
+          distinguishable specimen was logged with its site location, a morphological description, a
+          photograph, and an uncontaminated sample collected in a vial or bag.
         </p>
 
-        <h3>Field Sampling</h3>
+        <h3>DNA Barcoding</h3>
         <p>
-          Macroinvertebrate communities were sampled using standardized protocols at each site.
-          Organisms were identified to the lowest practical taxonomic level, and counts were
-          recorded per sample unit. Approximately 10 macroinvertebrate groups were consistently
-          represented across all five sites.
+          Species identification combined morphology with DNA barcoding: DNA was extracted with Qiagen
+          DNeasy kits, PCR-amplified targeting the COI region for animals and rbCL for plants, and
+          sequenced at the University of Chicago core facility. Sequences were matched against known
+          references via DNA Subway's BLAST feature, cross-checked against dichotomous keys, the Field
+          Museum's Chicago moss guide, and iNaturalist, and each identification was tagged as native or
+          exotic using USDA PLANTS and Kew Plants of the World data.
         </p>
 
-        <h2>Analysis Methods</h2>
-
-        <h3>Alpha Diversity &amp; Shannon Entropy</h3>
+        <h3>ArcGIS Field Survey</h3>
         <p>
-          Alpha diversity (species richness per site) and Shannon-Wiener diversity index (H')
-          were calculated for each site. Shannon entropy captures both richness and evenness,
-          giving a fuller picture of community structure than raw species counts alone. Sites
-          with complex riprap habitat consistently showed higher H' values.
+          A final survey week used an ArcGIS Survey123 form to log every organism found along transects
+          at 0, 10, and 30 feet from the shoreline across Revetments 1–5, recording location, broad
+          organism type, and an image at each point — the dataset the area-normalized diversity metrics
+          below are built from.
         </p>
 
-        <h3>Bray-Curtis Dissimilarity</h3>
+        <h2>Analysis</h2>
         <p>
-          Pairwise Bray-Curtis dissimilarity was computed across all site pairs to quantify
-          compositional distance. Bray-Curtis accounts for species abundances (not just
-          presence/absence), making it appropriate for count data from replicated surveys.
-          The resulting dissimilarity matrix was used as input for both ordination and clustering.
-        </p>
-
-        <h3>NMDS Ordination</h3>
-        <p>
-          Non-metric multidimensional scaling (NMDS) was applied to the Bray-Curtis matrix
-          to project community composition into two dimensions for visualization. Sites that
-          cluster tightly in NMDS space share similar species assemblages. Stress values
-          were checked to confirm ordination quality.
-        </p>
-
-        <h3>Hierarchical Clustering</h3>
-        <p>
-          Ward's minimum variance hierarchical clustering was applied to the Bray-Curtis
-          dissimilarity matrix, producing a dendrogram of site similarity. The resulting
-          groupings were interpreted in relation to habitat structure and substrate type.
-        </p>
-
-        <h3>Radar Plot Visualization</h3>
-        <p>
-          Per-taxon relative abundance profiles for each site were visualized as radar (spider)
-          plots — allowing direct visual comparison of community "shape" across sites.
-          Sites dominated by pollution-tolerant taxa (e.g., chironomids) versus sensitive taxa
-          (e.g., EPT groups) are immediately distinguishable in this format.
-        </p>
-
-        <h2>Key Findings</h2>
-        <p>
-          NMDS and clustering identified two primary site groupings: structurally complex
-          riprap sites with higher biodiversity and more EPT-group representatives, and
-          simpler concrete/seawall sites with lower diversity dominated by pollution-tolerant
-          chironomid midges. Shannon diversity correlated positively with crevice habitat
-          availability — consistent with the intermediate disturbance hypothesis and with
-          habitat complexity driving local invertebrate diversity at engineered shorelines.
+          For each revetment section, I computed alpha diversity (raw and per-m² richness), Shannon
+          diversity index, evenness, and pairwise Bray-Curtis dissimilarity, then used NMDS ordination
+          to visualize how community composition clustered across sites. Phylogenetic trees were built
+          per revetment from the barcoded sequences to check whether revetment type filtered species by
+          evolutionary lineage. Species without a direct identification were placed into a "constructed
+          ecosystem" food web per site, built from literature on predation relationships and comparable
+          Chicago-area ecosystems, to make qualitative comparisons possible even where genetic data was
+          incomplete.
         </p>
 
         <div class="callout blue">
-          <p class="callout-title">Ecological Significance</p>
+          <p class="callout-title">Key Findings</p>
           <p>
-            The results suggest that the choice of revetment design — not just its presence —
-            has measurable ecological consequences. Riprap structures supporting interstitial
-            habitat host substantially more diverse invertebrate communities than bare concrete
-            surfaces, with implications for restoration and green infrastructure design.
+            Forbs were the most abundant category overall, followed by mosses and invertebrates.
+            <strong>Revetment 2</strong> was the most distinct site — highest Bray-Curtis dissimilarity
+            from the others, the widest phylogenetic spread (five plant orders), and the densest
+            invertebrate and lichen presence, likely driven by its jagged, gap-rich rubble structure.
+            <strong>Revetment 5</strong> had the highest richness density but the lowest evenness — a
+            single-category-dominated community. <strong>Revetment 3</strong> was the most balanced
+            (highest Shannon index). Moss species were overwhelmingly native, while forbs and
+            invertebrates were dominated by exotic and invasive species — a pattern with real
+            implications for which revetment types are worth prioritizing for native biodiversity.
           </p>
         </div>
 
-        <iframe class="poster-embed" src="/assets/revetment-biodiversity-writeup.pdf" title="Revetment Biodiversity Study — Analysis Visualizations"></iframe>
-        <p class="poster-caption">Revetment Biodiversity Study — analysis visualizations (Quarto notebook output: organism counts, community composition, and per-site diversity charts)</p>
+        <div class="callout amber">
+          <p class="callout-title">Biodiversity vs. Erosion Control</p>
+          <p>
+            Cross-referencing the biodiversity results against field observations of erosion
+            performance, Revetments 2 and 3 — both rubble-based, with irregular blocks and open
+            spacing — were also the most effective at dissipating wave energy. Revetment 3 stood out
+            as likely the most cost-effective of the five (its rubble reads as reused, discarded
+            concrete) while also posting the highest Shannon diversity value, making it the strongest
+            overall candidate among the five when biodiversity, erosion control, and cost are weighed
+            together.
+          </p>
+        </div>
+
+        <p>
+          The full write-up — DNA barcoding methodology, phylogenetic trees, constructed food-web
+          diagrams per site, and the complete statistical results — is below.
+        </p>
+
+        <iframe class="poster-embed" src="/assets/revetment-biodiversity-writeup.pdf" title="Revetments of LaRabida and Promontory Point — Write-up"></iframe>
+        <p class="poster-caption">Revetments of LaRabida and Promontory Point — McGallian, Deimling, Patel, Herrera, Restivo, Spring 2025</p>
         <p style="text-align:center; margin-top:-10px;">
           <a href="/assets/revetment-biodiversity-writeup.pdf" download class="btn btn-secondary" style="font-size:12px;">Download PDF</a>
         </p>
@@ -162,12 +156,12 @@
         <div style="background:var(--paper-0); border:1px solid var(--border); border-radius:var(--panel-radius); padding:18px 20px;">
           <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; letter-spacing:0.10em; text-transform:uppercase; color:var(--ink-4); margin-bottom:14px;">Methods</div>
           <div class="tech-stack" style="flex-direction:column; gap:6px; margin:0;">
-            <div class="tech-item">Alpha diversity</div>
-            <div class="tech-item">Shannon entropy (H')</div>
+            <div class="tech-item">DNA barcoding (COI / rbCL)</div>
+            <div class="tech-item">PCR + BLAST (DNA Subway)</div>
+            <div class="tech-item">Alpha diversity &amp; Shannon index</div>
             <div class="tech-item">Bray-Curtis dissimilarity</div>
             <div class="tech-item">NMDS ordination</div>
-            <div class="tech-item">Hierarchical clustering</div>
-            <div class="tech-item">Radar plots</div>
+            <div class="tech-item">Phylogenetic trees</div>
           </div>
         </div>
 
@@ -176,15 +170,15 @@
           <div style="display:flex; flex-direction:column; gap:10px;">
             <div>
               <div style="font-family:'IBM Plex Mono',monospace; font-size:20px; font-weight:600; color:var(--ink-0);">5</div>
-              <div style="font-size:11px; color:var(--ink-4);">revetment study sites</div>
-            </div>
-            <div>
-              <div style="font-family:'IBM Plex Mono',monospace; font-size:20px; font-weight:600; color:var(--ink-0);">~10</div>
-              <div style="font-size:11px; color:var(--ink-4);">macroinvertebrate taxa sampled</div>
+              <div style="font-size:11px; color:var(--ink-4);">revetment sections at LaRabida</div>
             </div>
             <div>
               <div style="font-family:'IBM Plex Mono',monospace; font-size:20px; font-weight:600; color:var(--ink-0);">4</div>
-              <div style="font-size:11px; color:var(--ink-4);">complementary analysis methods</div>
+              <div style="font-size:11px; color:var(--ink-4);">weeks of field sampling</div>
+            </div>
+            <div>
+              <div style="font-family:'IBM Plex Mono',monospace; font-size:20px; font-weight:600; color:var(--ink-0);">5</div>
+              <div style="font-size:11px; color:var(--ink-4);">person team, led by Andrew</div>
             </div>
           </div>
         </div>
@@ -192,10 +186,10 @@
         <div style="background:var(--paper-0); border:1px solid var(--border); border-radius:var(--panel-radius); padding:18px 20px;">
           <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; letter-spacing:0.10em; text-transform:uppercase; color:var(--ink-4); margin-bottom:10px;">Tools</div>
           <div class="tech-stack" style="flex-direction:column; gap:6px; margin:0;">
+            <div class="tech-item">ArcGIS Survey123</div>
             <div class="tech-item">Python · pandas</div>
-            <div class="tech-item">scikit-bio (NMDS)</div>
+            <div class="tech-item">DNA Subway (BLAST)</div>
             <div class="tech-item">matplotlib / seaborn</div>
-            <div class="tech-item">scipy (clustering)</div>
           </div>
         </div>
 
