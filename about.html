@@ -52,7 +52,14 @@
       color: var(--ink-4);
       white-space: nowrap;
       padding-top: 2px;
-      min-width: 90px;
+      width: 128px;
+      min-width: 128px;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 700px) {
+      .cv-entry { flex-direction: column; gap: 4px; }
+      .cv-date { width: auto; }
     }
 
     .cv-content {}
@@ -114,10 +121,10 @@
         <!-- Headshot placeholder -->
         <div>
           <div class="headshot-placeholder" style="border-style:solid; overflow:hidden; padding:0;">
-            <img src="/assets/headshot.png" alt="Andrew McGallian" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius);">
+            <img src="/assets/headshot.png?v=2" alt="Andrew McGallian" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius);">
           </div>
           <div style="margin-top:16px; display:flex; flex-direction:column; gap:8px;">
-            <a href="/assets/cv.pdf" class="btn btn-secondary" style="justify-content:center;" download>
+            <a href="/assets/McGallian_Andrew_CV.pdf" class="btn btn-secondary" style="justify-content:center;" download="McGallian_Andrew_CV.pdf">
               Download CV
             </a>
           </div>
@@ -127,20 +134,25 @@
         <div>
           <div class="prose">
             <p>
-              I completed my MS in Environmental Science at the University of Chicago in June 2026,
-              capping two years as a Data Visualization Fellow at the Center for Digital Scholarship.
-              My work sits at the intersection of geospatial computing, environmental science, and
-              fieldwork — GNSS survey, drone mapping, and the software that turns field and satellite
-              data into something usable.
+              I'm an environmental scientist and GIS developer based in Chicago, with an MS in
+              Environmental Science from the University of Chicago (June 2026). My work splits
+              between fieldwork and code in roughly equal measure — GNSS survey, drone mapping, and
+              geochemical sample analysis on one side, and the Python and JavaScript that turn that
+              field data into usable tools and maps on the other.
             </p>
 
             <p>
-              At the UChicago Library, I designed and delivered geocomputation workshops for the
-              university community and built open-source geospatial tools, including the Chicago
-              Environmental Atlas — an interactive time-series map of 150 years of the city's
-              ecological history. This past summer I spent a field season in Türkiye with the
-              Türkmen-Karahöyük Archaeological Project, running daily GNSS survey and building
-              TKAP Tools, a QGIS plugin the field team still uses.
+              The clearest example is this past summer: nine weeks on the geomatics team of an active
+              excavation with the Türkmen-Karahöyük Archaeological Project in Türkiye, running daily
+              GNSS survey and building <a href="/projects/tkap-tools/">TKAP Tools</a>, a QGIS plugin
+              the field team still uses to turn raw survey points into stratigraphic maps and section
+              drawings. It's the same pattern across most of what I've built: the
+              <a href="/projects/chicago-atlas/">Chicago Environmental Atlas</a> maps 150 years of
+              Chicago's ecological history from Landsat and archival data, and a fellowship cohort
+              project traced 132 years of UChicago research output across campus and the world. In
+              between, I've run <a href="/projects/biodiversity/">macroinvertebrate surveys</a> on
+              Lake Michigan revetments, analyzed geochemical cores in a paleoclimate lab, and taught
+              GIS workshops for the university community.
             </p>
 
             <p>
@@ -200,7 +212,8 @@
               Built and deployed the <a href="/projects/chicago-atlas/">Chicago Environmental Atlas</a>,
               a Flask/Docker web app mapping 150 years of Chicago environmental change from Landsat
               imagery, archival maps, and public environmental data. Separately built the full
-              analysis and visualization pipeline for a fellowship cohort project spanning ~32,000
+              analysis and visualization pipeline for
+              <a href="/projects/dissertations-viz/">a fellowship cohort project</a> spanning ~32,000
               UChicago dissertation records (1893–2025) — NLP-based geographic extraction, four
               analytical tabs, and a data download portal. Designed and delivered geocomputation and
               ArcGIS Online workshops for the university community across three quarters.
