@@ -664,6 +664,46 @@ main.site-main {
 }
 
 /* ============================================================
+   FIGURE / IMAGE EMBED
+   ============================================================ */
+.figure {
+  margin: 20px 0;
+}
+
+.figure img {
+  width: 100%;
+  display: block;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--paper-0);
+}
+
+.figure-caption {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--ink-4);
+  text-align: center;
+  margin-top: 8px;
+}
+
+.figure-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.figure-grid .figure {
+  margin: 0;
+}
+
+@media (max-width: 720px) {
+  .figure-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
    DIVIDERS
    ============================================================ */
 hr.divider {

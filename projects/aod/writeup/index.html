@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clearing the Air—McGallian 2026</title>
+<style>
+  :root {
+    --ink: #1a1a2a;
+    --body: #2a2a3a;
+    --muted: #4a4a6a;
+    --light: #8888aa;
+    --rule: #d8d8e8;
+    --bg: #fafafa;
+    --accent: #2c5f8a;
+    --serif: 'Georgia', 'Times New Roman', serif;
+    --sans: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    --mono: 'SFMono-Regular', 'Consolas', monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.85;
+    color: var(--body);
+    background: var(--bg);
+  }
+
+  .page {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3.5rem 2rem 5rem;
+  }
+
+  /* TITLE */
+  .title-block {
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 1.25rem;
+    margin-bottom: 2.5rem;
+  }
+  .title-block h1 {
+    font-family: var(--serif);
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 0.3rem;
+  }
+  .title-block .subtitle {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--muted);
+    margin-bottom: 0.85rem;
+  }
+  .title-block .byline {
+    font-size: 0.88rem;
+    color: var(--muted);
+  }
+
+  /* HEADINGS */
+  h2 {
+    font-family: var(--sans);
+    font-size: 1.02rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 2.4rem 0 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 0.3rem;
+  }
+
+  /* BODY */
+  p {
+    margin-bottom: 1.05rem;
+    text-align: justify;
+    hyphens: auto;
+  }
+
+  /* FIGURES */
+  figure {
+    margin: 1.8rem 0;
+    background: #f2f2f8;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  figure img {
+    width: 100%;
+    display: block;
+  }
+  figure video {
+    width: 100%;
+    display: block;
+    background: #000;
+  }
+  .fig-placeholder {
+    padding: 2.5rem 1rem;
+    text-align: center;
+    color: var(--light);
+    font-size: 0.82rem;
+    font-family: var(--mono);
+    background: #f5f5fc;
+  }
+  figcaption {
+    padding: 0.65rem 1rem 0.75rem;
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.55;
+    border-top: 1px solid var(--rule);
+  }
+  figcaption strong { color: var(--ink); }
+
+  /* REFERENCES */
+  .references {
+    margin-top: 2.5rem;
+    padding-top: 1rem;
+    border-top: 2px solid var(--rule);
+  }
+  .references h2 { margin-top: 0; }
+  .references ol {
+    padding-left: 1.5rem;
+    font-size: 0.84rem;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+  .references ol li { margin-bottom: 0.55rem; }
+  .references a { color: var(--accent); text-decoration: none; }
+  .references a:hover { text-decoration: underline; }
+
+  sup { font-size: 0.7em; color: var(--accent); font-weight: 600; }
+
+  hr { border: none; border-top: 1px solid var(--rule); margin: 2rem 0; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <a href="/projects/aod/" style="display:inline-block; margin-bottom:1.5rem; font-family:var(--sans); font-size:0.82rem; color:var(--accent); text-decoration:none;">&larr; Back to project</a>
+
+  <!-- TITLE -->
+  <div class="title-block">
+    <h1>Clearing the Air: Aerosol Optical Depth Distribution in the USA</h1>
+    <div class="subtitle">Exploratory Analysis 2003–2025</div>
+    <div class="byline">Andrew McGallian—Environmental Data Science II</div>
+  </div>
+
+  <!-- 1. INTRODUCTION -->
+  <h2>1. Introduction</h2>
+
+  <p>This project investigates 22 years of MODIS Aqua satellite aerosol retrievals over the contiguous United States. Aerosol Optical Depth (AOD) at 550 nm serves as the primary variable. It is a measure of atmospheric particle loading sensitive to both combustion emissions and wildfire smoke. The analysis begins with a national trend question and follows the data through a sequence of methodological decisions that ultimately point to the EPA's Mercury and Air Toxics Standards (MATS) coal plant retirement wave as a primary driver of regional air quality change. MODIS Aqua was chosen over MODIS Terra for its more reliable afternoon overpass characteristics; the NASA Dark Target team notes that Aqua is the more reliable sensor due to Terra detector degradation issues.<sup>[7]</sup> The Deep Blue / Dark Target merged retrieval was selected for improved spatial coverage: Dark Target performs well over dark vegetated surfaces while Deep Blue handles bright arid and urban areas, with the merge scheme selecting between them based on NDVI.<sup>[8,&thinsp;9]</sup> 10 km city buffers are a pragmatic approximation of zonal AOD for each city that may overlap in dense corridors; MODIS AOD has retrieval limitations over bright surfaces;<sup>[8,&thinsp;9]</sup> and wind trajectory analysis to formally attribute city AOD changes to specific upwind retirements was beyond scope.</p>
+
+  <p>Three analytical tools anchor the study: OLS time series regression applied to national and city-level AOD series, Holt-Winters exponential smoothing decomposition to isolate structural trend from seasonal signal, and Global and Local Moran's I to quantify changes in spatial clustering over time. ARIMA modeling was also attempted on both the mean and skewness series but proved uninformative—best-fit models could not capture the extreme events driving AOD dynamics and collapsed when forecasting beyond the observed period. This was itself telling; it suggested the extremes of AOD are governed by structural events such as policy changes and wildfire outbreaks rather than smooth autoregressive dynamics, which redirected attention toward those drivers.</p>
+
+  <!-- 2. NATIONAL TRENDS -->
+  <h2>2. National AOD Trends: A Puzzle in Mean and Skewness</h2>
+
+  <p>The first question was whether national average AOD has trended over the study period. Annual means were regressed on time, both raw (p&nbsp;=&nbsp;0.449, R²&nbsp;=&nbsp;0.028) and after deseasoning by subtracting the long-run monthly climatology (p&nbsp;=&nbsp;0.227, R²&nbsp;=&nbsp;0.069). Neither returned a significant trend. Month-by-month OLS across all twelve calendar months also produced no significant slopes, though July through October showed visually increasing tendencies consistent with an intensifying western fire season. The Holt-Winters decomposition of the mean series (Figure 1) reveals a modest upward drift in the baseline level and clear summer peaks, but these features are not strong enough to overcome the noise in the annual trend test.</p>
+
+  <figure>
+    <img src="figures/aod_timeline.png" alt="National monthly mean AOD time series"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+    <div class="fig-placeholder" style="display:none">figures/aod_mats_timeline.png</div>
+    <figcaption><strong>Figure 1.</strong> National monthly mean AOD with 12-month rolling mean and Holt-Winters trend component, 2003–2025. No significant long-run trend (p&nbsp;=&nbsp;0.449 raw; p&nbsp;=&nbsp;0.227 deseasoned). Summer peaks reflect fire season aerosol loading.</figcaption>
+  </figure>
+
+  <p>Skewness of the monthly AOD distribution told a different story. Annual mean skewness was regressed on time and returned a significant positive trend, both raw (p&nbsp;=&nbsp;0.007, R²&nbsp;=&nbsp;0.302) and deseasoned (p&nbsp;=&nbsp;0.009, R²&nbsp;=&nbsp;0.284). The Holt-Winters skewness decomposition (Figure 2) shows the baseline level rising over time, with June, August, and October showing the clearest per-month increases, which may be consistent with fire season starting earlier and lasting longer. A flat mean alongside rising skewness implies the AOD distribution is not stable: one part of the country is improving while another worsens, with the signals approximately canceling in the national average while compounding in the tail. If that divergence has geographic structure, it should be detectable as a spatial pattern rather than a temporal one. This inferential pivot motivated all subsequent spatial analysis.</p>
+
+  <figure>
+    <img src="figures/hw_skew_level.png" alt="Holt-Winters decomposition of national skewness"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+    <div class="fig-placeholder" style="display:none">figures/aod_mats_hw_decomp.png</div>
+    <figcaption><strong>Figure 2.</strong> Holt-Winters decomposition of national skewness, 2003–2025. While mean baseline drifts modestly and non-significantly, skewness baseline rises significantly (p&nbsp;=&nbsp;0.007), indicating a growing right tail—more extreme AOD episodes—even as the average holds flat.</figcaption>
+  </figure>
+
+  <!-- 3. SPATIAL STRUCTURE -->
+  <h2>3. Spatial Structure and the MATS Hypothesis</h2>
+
+  <p>Research into phenomena beyond wildfire that could produce geographically structured AOD change led to the Mercury and Air Toxics Standards (MATS), finalized by the EPA on February 16, 2012 (77 FR 9304).<sup>[1]</sup> MATS set emissions thresholds for mercury, acid gases, and other hazardous air pollutants from coal- and oil-fired power plants that many aging facilities could not meet economically. Between January 2015 and April 2016 alone, nearly 20 GW of coal capacity retired, with 26% of those retirements occurring in April 2015, the rule's initial compliance date.<sup>[2]</sup> Cross-referencing the Sierra Club's coal plant retirement map with the AOD spatial difference confirmed strong geographic alignment.<sup>[12]</sup></p>
+
+  <p>The difference map (Figure 3) compares mean AOD over 2016–2023 (post-compliance) to 2003–2011 (pre-MATS baseline). The Southeast and lower Midwest—particularly Virginia, the Carolinas, Tennessee, Missouri, and Arkansas—show reductions of 0.05–0.08 AOD units. The West shows worsening consistent with post-2017 wildfire intensification. These two signals are the likely explanation for the flat national mean since they roughly cancel in the aggregate while producing the rising skewness observed above. Two regional features merit additional note. Western Oklahoma and Kansas show moderate worsening (ΔAOD +0.02 to +0.04) likely attributable to the Permian and Anadarko Basin oil and gas expansion that accelerated sharply after 2010—Permian Basin crude oil production was approximately four times its 2007 level by 2018,<sup>[3]</sup> bringing with it flaring, fugitive VOC emissions, and secondary aerosol formation—compounded by intensifying drought-driven agricultural dust in the southern Great Plains. Conversely, small pockets of improvement in Arizona could be consistent with the retirement of large western coal facilities during the same period.</p>
+
+  <figure>
+    <img src="figures/aod_difference_map.png" alt="Mean AOD difference post-MATS minus pre-MATS"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+    <div class="fig-placeholder" style="display:none">figures/aod_difference_map.png</div>
+    <figcaption><strong>Figure 3.</strong> Mean AOD difference (post-MATS 2016–2023 minus pre-MATS 2003–2011). Blue&nbsp;=&nbsp;improvement; red&nbsp;=&nbsp;worsening. Southeast reductions of 0.05–0.12 AOD units align geographically with Appalachian and Illinois Basin coal plant retirements. Western worsening is consistent with post-2017 wildfire intensification.</figcaption>
+  </figure>
+
+  <p>To trace how spatial structure evolved continuously, Global Moran's I was computed monthly using a Queen's-case spatial weights matrix. Figure 4a shows the monthly Moran's I series with its 12-month rolling mean and OLS linear trend. The trend is significantly negative at the 0.05 level (slope&nbsp;=&nbsp;−0.0001/month, p&nbsp;=&nbsp;0.029, R²&nbsp;=&nbsp;0.018), indicating declining spatial clustering of AOD over time. Note that upon inspection of the summary table the Durbin-Watson statistic of 1.321 indicates mild positive autocorrelation in the residuals, so the p-value should be treated as approximate rather than exact; the visual trend is nonetheless clear.</p>
+
+  <figure>
+    <img src="figures/global_morans_trend.png" alt="Monthly Global Moran's I with OLS trend"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+    <div class="fig-placeholder" style="display:none">figures/aod_moran_trend.png</div>
+    <figcaption><strong>Figure 4a.</strong> Monthly Global Moran's I with 12-month rolling mean and OLS linear trend, 2003–2025 (N&nbsp;=&nbsp;269). Trend: slope&nbsp;=&nbsp;−0.0001/month, p&nbsp;=&nbsp;0.029, R²&nbsp;=&nbsp;0.018. DW&nbsp;=&nbsp;1.321 indicates mild positive autocorrelation; p should be treated as approximate. See 4b for the full monthly LISA evolution.</figcaption>
+  </figure>
+
+  <figure>
+  <video controls loop>
+    <source src="figures/AOD_Moran_animation.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <figcaption><strong>Figure 4b (Animation).</strong> Monthly LISA cluster maps, 2003–2025. High-High clusters (red) in the Southeast weaken visibly after 2016 as MATS retirements take effect. High-High clustering on the Pacific Coast and Pacific Northwest intensifies from 2017 onward, consistent with wildfire-driven aerosol loading.</figcaption>
+</figure>
+
+  <p>The Holt-Winters decomposition of the Moran's I baseline level (Figure 5) reveals three structural phases underlying the trend. From 2003–2014, Moran's I held stable near 0.60, reflecting persistent Southeast coal combustion HH clusters. From 2014–2021 it declined to approximately 0.56 as those clusters dissolved during the MATS compliance window—notably, the decline aligns with actual plant retirements rather than MATS enactment, consistent with compliance economics forcing closures rather than announcement effects. From 2021 onward a partial recovery to ~0.58 possibly reflects new clustering driven by western wildfire smoke in the Pacific Coast and Pacific Northwest.</p>
+
+  <figure>
+    <img src="figures/morans_decomposition.png" alt="Holt-Winters baseline level of Global Moran's I"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+    <div class="fig-placeholder" style="display:none">figures/morans_i_baseline.png</div>
+    <figcaption><strong>Figure 5.</strong> Holt-Winters baseline level of Global Moran's I, 2003–2025. Three phases: stable coal-era clustering (~0.60, 2003–2014), MATS compliance-driven decline (~0.56, 2014–2021), and partial wildfire-driven recovery (~0.58, 2021–present).</figcaption>
+  </figure>
+
+  <p>These spatial patterns are consistent with prior work using ground-based and modeled pollution fields. Henneman et al.<sup>[10]</sup> tracked SO₂-derived PM2.5 exposure from 480 US coal plants between 1999 and 2020, finding that retirements and scrubber installations drove sharp declines in eastern US exposure—particularly concentrated in the Southeast—closely mirroring the geographic footprint of AOD improvement observed here. The same group subsequently established that coal-derived PM2.5 carries roughly twice the mortality risk of PM2.5 from other sources, and that the post-2012 retirement wave produced measurable mortality reductions.<sup>[11]</sup> The present study complements that body of work by providing an independent satellite-based aerosol perspective across the full 2003–2025 MODIS Aqua record situating the MATS signal within longer-term trends.</p>
+
+  <!-- 4. CITY-LEVEL -->
+  <h2>4. City-Level Evidence</h2>
+
+  <p>To test the MATS hypothesis quantitatively, monthly AOD was extracted for each of the top 100 US cities using 10 km buffers, and OLS trend slopes were estimated for three regulatory periods: Pre-MATS (2003–2011), During MATS (2012–2016), and post-MATS (2017–2024). Cities were classified as coal belt if their state's electric utilities drew primarily on Appalachian or Illinois Basin bituminous coal—the fuel type most directly targeted by MATS—using EIA 2008 electric power sector consumption data.<sup>[4]</sup> States consuming primarily subbituminous or lignite coal were excluded as they faced different compliance economics. Coal belt states: VA, WV, KY, TN, NC, SC, GA, FL, AL, OH, PA, IN, IL, MI, WI, MD.</p>
+
+  <p>Figure 6 shows both the period-level boxplot comparison and the per-city AOD change distribution. Pre-MATS, coal belt cities had a higher median AOD than other cities (0.162 vs 0.128), consistent with heavier coal combustion in those regions. Post-MATS, coal belt cities not only improved but crossed below the other-cities median (0.139 vs 0.150)—a complete reversal. The per-city delta distribution (post minus pre) for coal belt cities is almost entirely left of zero while other cities straddle zero with a slight rightward lean. A two-sample t-test on per-city ΔAOD returns t&nbsp;=&nbsp;−5.80, p&nbsp;&lt;&nbsp;0.001, confirming the divergence is not due to chance.</p>
+
+  <figure>
+    <img src="figures/coal_mats_periods_boxplot.png" alt="AOD by regulatory period, coal belt vs other cities"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+    <div class="fig-placeholder" style="display:none">figures/coal_mats_periods_boxplot.png</div>
+    <figcaption><strong>Figure 6.</strong> (A) Mean AOD by regulatory period for coal belt (n&nbsp;=&nbsp;32) vs other cities (n&nbsp;=&nbsp;62). Pre-MATS medians: 0.162 vs 0.128. Post-MATS medians: 0.139 vs 0.150—a reversal of relative position. (B) Per-city ΔAOD (post minus pre-MATS). Coal belt cities cluster left of zero. t&nbsp;=&nbsp;−5.80, p&nbsp;&lt;&nbsp;0.001.</figcaption>
+  </figure>
+
+  <!-- 5. POPULATION CONFOUND -->
+  <h2>5. Ruling Out Population Growth as a Confound</h2>
+
+  <p>Faster-growing cities might worsen simply through increased vehicle emissions and energy demand, independent of coal policy. Annual population growth rates from Census intercensal estimates<sup>[6]</sup> were regressed against city-level AOD slope. The pooled OLS returned a nominally significant result (slope&nbsp;=&nbsp;+0.0004, p&nbsp;=&nbsp;0.022, R²&nbsp;=&nbsp;0.056, N&nbsp;=&nbsp;94), but visual diagnostics flagged Frisco, TX and Virginia Beach, VA as high-leverage points. Removing both collapses the relationship to p&nbsp;=&nbsp;0.302, R²&nbsp;=&nbsp;0.012.</p>
+
+  <p>Stratifying by coal belt membership (Figure 7) resolves the structure somewhat. Within coal belt cities, population growth explains nothing about AOD trend direction (p&nbsp;=&nbsp;0.643, R²&nbsp;=&nbsp;0.007)—cities ranging from declining population to rapid growth all improved. Among other cities, a weak positive relationship is detectable at the 0.05 level (p&nbsp;=&nbsp;0.027, R²&nbsp;=&nbsp;0.079), possibly consistent with mild urbanization-driven worsening in the absence of a MATS effect. The MATS retirement signal dominated any emissions increase attributable to demographic change within coal belt cities due to the large structural change in energy consumption composition.</p>
+
+  <figure>
+    <img src="figures/aod_vs_popgrowth_coalgroups.png" alt="Population growth vs AOD slope by coal belt group"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+    <div class="fig-placeholder" style="display:none">figures/aod_vs_popgrowth_coalgroups.png</div>
+    <figcaption><strong>Figure 7.</strong> OLS regression of annual population growth rate on AOD trend slope, stratified by coal belt classification. Left (coal belt, n&nbsp;=&nbsp;32): slope&nbsp;=&nbsp;+0.00013, p&nbsp;=&nbsp;0.643, R²&nbsp;=&nbsp;0.007—flat. Right (other cities, n&nbsp;=&nbsp;62): slope&nbsp;=&nbsp;+0.00042, p&nbsp;=&nbsp;0.027, R²&nbsp;=&nbsp;0.07—weak positive. Population growth does not explain coal belt improvement or worsening.</figcaption>
+  </figure>
+
+  <!-- 6. CONCLUSION -->
+  <h2>6. Conclusion</h2>
+
+  <p>The national mean AOD is flat over 2003–2025 (p&nbsp;=&nbsp;0.449), but this conceals a significant and structurally meaningful divergence. The AOD distribution has become significantly more right-skewed (p&nbsp;=&nbsp;0.007, R²&nbsp;=&nbsp;0.30), Global Moran's I has declined in three phases tracking the MATS compliance window, and coal belt cities shifted from higher to lower AOD relative to other cities (t&nbsp;=&nbsp;−4.56, p&nbsp;&lt;&nbsp;0.001)—a reversal that is independent of population growth. Together these findings support a causal interpretation of MATS-driven coal plant retirements<sup>[1,&thinsp;2]</sup> as a primary driver of regional AOD improvement in coal belt states, partially offset nationally by worsening wildfire activity in the West. There is somewhat of a Simpson's Paradox here: when you look at AOD nationally you see no real change, but when viewed in parts, opposing processes emerge that tell a story of the East becoming cleaner and the West getting smokier.</p>
+
+  <hr>
+
+  <!-- REFERENCES -->
+  <div class="references">
+    <h2>References</h2>
+    <ol>
+      <li>U.S. Environmental Protection Agency. (2012). National Emission Standards for Hazardous Air Pollutants from Coal- and Oil-Fired Electric Utility Steam Generating Units (Mercury and Air Toxics Standards). 77 FR 9304. February 16, 2012. 40 CFR Part 63, Subpart UUUUU.</li>
+      <li>U.S. Energy Information Administration. (2016). EIA electricity generator data show power industry response to EPA mercury limits. <em>Today in Energy.</em> <a href="https://www.eia.gov/todayinenergy/detail.php?id=26972">eia.gov/todayinenergy/detail.php?id=26972</a></li>
+      <li>Zhang, Y., Gautam, R., Pandey, S., et al. (2020). Quantifying methane emissions from the largest oil-producing basin in the United States from space. <em>Science Advances,</em> 6(17), eaaz5120. <a href="https://doi.org/10.1126/sciadv.aaz5120">doi:10.1126/sciadv.aaz5120</a></li>
+      <li>U.S. Energy Information Administration. (2009). Annual Coal Report 2008, Table 26: Coal Consumption by Electric Power Sector. <a href="https://www.eia.gov/coal/annual/">eia.gov/coal/annual</a></li>
+      <li>Gupta, P. (2025). <em>AQUA MODIS High Resolution Level 3 monthly aerosol data, 0.1x0.1 degree grid</em> [Data set]. NASA Goddard Earth Sciences Data and Information Services Center. <a href="https://doi.org/10.5067/MODIS/AER_DBDT_M10KM_L3_MODIS_AQUA.001">doi:10.5067/MODIS/AER_DBDT_M10KM_L3_MODIS_AQUA.001</a></li>
+      <li>U.S. Census Bureau. Intercensal Population Estimates, 2000–2024. Population Division. <a href="https://www.census.gov">census.gov</a></li>
+      <li>NASA Dark Target Team. (2024). Dark Target FAQ: Is there a difference between Terra vs Aqua AOD? <a href="https://darktarget.gsfc.nasa.gov/faq-page">darktarget.gsfc.nasa.gov/faq-page</a></li>
+      <li>Hsu, N. C., Jeong, M.-J., Bettenhausen, C., et al. (2013). Enhanced Deep Blue aerosol retrieval algorithm: The second generation. <em>Journal of Geophysical Research: Atmospheres,</em> 118(16), 9296–9315. <a href="https://doi.org/10.1002/jgrd.50712">doi:10.1002/jgrd.50712</a></li>
+      <li>Levy, R. C., Mattoo, S., Munchak, L. A., et al. (2013). The Collection 6 MODIS aerosol products over land and ocean. <em>Atmospheric Measurement Techniques,</em> 6(11), 2989–3034. <a href="https://doi.org/10.5194/amt-6-2989-2013">doi:10.5194/amt-6-2989-2013</a></li>
+      <li>Henneman, L. R. F., Rasel, M. M., Choirat, C., Anenberg, S. C., &amp; Zigler, C. (2023). Inequitable exposures to U.S. coal power plant–related PM2.5: 22 years and counting. <em>Environmental Health Perspectives,</em> 131(3), 037005. <a href="https://doi.org/10.1289/EHP13191">doi:10.1289/EHP13191</a></li>
+      <li>Henneman, L. R. F., Choirat, C., Dedoussi, I., Dominici, F., Roberts, J., &amp; Zigler, C. (2023). Mortality risk from United States coal electricity generation. <em>Science,</em> 382(6673), 941–946. <a href="https://doi.org/10.1126/science.adf4915">doi:10.1126/science.adf4915</a></li>
+      <li>Sierra Club. Coal Plant Retirement Tracker. <a href="https://www.sierraclub.org/coal/coal-plant-map">sierraclub.org/coal/coal-plant-map</a></li>
+    </ol>
+  </div>
+
+</div>
+</body>
+</html>

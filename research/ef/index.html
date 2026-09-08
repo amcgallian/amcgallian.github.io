@@ -102,6 +102,11 @@
           <li>Resample from 100 m to 30 m resolution; export as GeoTIFF</li>
         </ol>
 
+        <div class="figure">
+          <img src="/assets/landsat-pipeline.png" alt="Landsat processing pipeline: USGS download, external storage, Chicago mask applied to raw .tif, metrics processing (LST, NDVI, CIR, AOD), synced to Box">
+          <p class="figure-caption">Landsat processing pipeline — USGS download through masking, metric extraction, and storage</p>
+        </div>
+
         <h3>M-TEMP Mobile Sensor Carts</h3>
         <p>
           University of Chicago M-TEMP carts deploy RTD temperature sensors at six heights (0.6 ft,
@@ -206,7 +211,7 @@
           <li>Vertical temperature profile plots (6-height stratification)</li>
           <li>AGU 2024 conference poster</li>
           <li>Mapping &amp; Verticals Teams technical report</li>
-          <li>Landsat processing methods report</li>
+          <li><a href="/research/ef/landsat-report/" style="color:var(--blue);">Landsat processing methods report →</a></li>
         </ul>
 
         <h2>AGU 2024 Poster</h2>
@@ -220,8 +225,27 @@
           <a href="/assets/agu24-poster.pdf" download class="btn btn-secondary" style="font-size:12px;">Download PDF</a>
         </p>
 
-        <div class="figure-placeholder">[ Figure: Landsat LST map, Chicago, Summer 2024 — to be added ]</div>
-        <div class="figure-placeholder">[ Figure: Roosevelt Road sensor heatmap — to be added ]</div>
+        <h2>StoryMap</h2>
+        <p>
+          An ArcGIS StoryMap walking through the project's data and findings.
+        </p>
+        <iframe src="https://storymaps.arcgis.com/stories/715536b45df84de999570d221bc18efa" width="100%" height="500px" frameborder="0" allowfullscreen allow="geolocation" style="border:1px solid var(--border); border-radius:var(--radius); display:block; margin:20px 0;"></iframe>
+
+        <div class="figure-grid">
+          <div class="figure">
+            <img src="/assets/ef-football-temp.png" alt="Football field iButton temperature heatmap">
+            <p class="figure-caption">iButton temperature heatmap, football field transect</p>
+          </div>
+          <div class="figure">
+            <img src="/assets/ef-roaming-temp.png" alt="Group 1 roaming temperature GPS track">
+            <p class="figure-caption">Group 1 roaming temperature, mapped to GPS track</p>
+          </div>
+        </div>
+
+        <div class="figure">
+          <img src="/assets/ef-sensor-timeseries.png" alt="Group 2 sensor vs. time comparison plot">
+          <p class="figure-caption">Sensor-vs-time comparison, Group 2 — two-cart parallel walk</p>
+        </div>
 
       </div>
 

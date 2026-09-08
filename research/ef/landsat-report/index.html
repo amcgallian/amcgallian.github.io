@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landsat LST Processing Methods — Andrew McGallian</title>
+  <meta name="description" content="In-depth methods report on retrieving and processing land surface temperature from Landsat thermal infrared bands, written for Environmental Frontiers.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    .formula {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      background: var(--paper-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      margin: 14px 0;
+      overflow-x: auto;
+    }
+    .refs {
+      font-size: 12px;
+      color: var(--ink-3);
+      line-height: 1.8;
+    }
+    .refs li { margin-bottom: 6px; }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="/" class="nav-brand">Andrew McGallian</a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/projects/">Projects</a></li>
+      <li><a href="/research/" class="active">Research</a></li>
+      <li><a href="/courses/">Courses</a></li>
+      <li><a href="/about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <header class="page-hero">
+    <div class="page-hero-inner">
+      <a href="/research/ef/" class="back-link">← Environmental Frontiers</a>
+      <p class="eyebrow">Methods Report · Environmental Frontiers</p>
+      <h1>Landsat LST Processing Methods</h1>
+      <p class="subtitle">
+        In-depth methods for retrieving and processing land surface temperature from Landsat
+        thermal infrared bands — the reference document behind the Landsat side of the
+        Environmental Frontiers pipeline.
+      </p>
+    </div>
+  </header>
+
+  <main class="site-main">
+    <div class="prose" style="max-width: 760px;">
+
+      <h2>1. Thermal Infrared Radiation and Radiometric Calibration</h2>
+      <p>
+        Landsat's Thermal Infrared Sensor (TIRS) on Landsat 8, specifically Bands 10 and 11,
+        measures emitted radiance in the thermal infrared spectrum, centered around 10.9 µm and
+        12 µm wavelengths. This spectral range is ideal for capturing the thermal emission
+        characteristics of land surfaces, as it falls within an atmospheric window where water
+        vapor and other gases minimally absorb thermal radiation (Gao et al., 2006).
+      </p>
+      <p>
+        Each thermal band sensor records digital numbers (DNs) that correspond to the radiance
+        emitted from Earth's surface. These DNs are converted to at-sensor radiance using a
+        calibration equation:
+      </p>
+      <div class="formula">L_sensor = (Gain × DN) + Offset</div>
+      <p>
+        where Gain and Offset are sensor-specific calibration coefficients provided in the
+        Landsat metadata (Chander et al., 2009). This conversion allows retrieval of the
+        radiance in physical units (W/m²/sr/µm).
+      </p>
+      <p>
+        To approximate the radiance reaching the sensor without atmospheric interference, further
+        corrections are applied based on atmospheric transmittance, path radiance, and downwelling
+        radiance — factors that account for the atmosphere's partial absorption and scattering of
+        thermal radiation. This top-of-atmosphere (TOA) radiance calculation ensures the data are
+        comparable across different time frames and conditions.
+      </p>
+
+      <h2>2. Land Surface Temperature (LST) Calculation</h2>
+      <p>
+        TOA radiance values are converted to brightness temperature using an inversion of
+        Planck's law, which relates the radiance emitted by a blackbody to its temperature:
+      </p>
+      <div class="formula">T_sensor = K2 / ln(K1 / L_sensor + 1)</div>
+      <p>
+        Here, K1 and K2 are thermal calibration constants specific to each Landsat thermal band
+        (Wang et al., 2016). Brightness temperature provides the apparent temperature at the
+        sensor, yet does not directly represent surface temperature due to the effects of
+        emissivity and atmospheric influence.
+      </p>
+      <p>
+        Since land surfaces are not perfect blackbodies, the emissivity (ε) of each pixel is
+        factored in to convert brightness temperature into LST. Emissivity varies by surface type
+        (vegetation, soil, water) and can be approximated through indices such as NDVI:
+      </p>
+      <div class="formula">LST = T_sensor / (1 + (λ × T_sensor / ρ) × ln ε)</div>
+      <p>
+        where λ represents the wavelength of emitted radiance and ρ is a constant based on
+        Planck's law (Kumar &amp; Stigter, 2012). This correction aligns the retrieved temperature
+        with the actual surface temperature by accounting for the varying emissivity of natural
+        surfaces.
+      </p>
+
+      <h2>3. Atmospheric Correction</h2>
+      <p>
+        Atmospheric conditions can alter thermal radiation by absorbing or scattering energy
+        before it reaches the satellite. Radiative transfer models like MODTRAN or the
+        Single-Channel algorithm estimate the atmospheric contribution based on ancillary data
+        (water vapor content, aerosol optical depth) at the time of acquisition (Kumar et al.,
+        2013). These corrections adjust TOA radiance to approximate the radiance emitted directly
+        from the Earth's surface.
+      </p>
+      <p>
+        The split-window algorithm, using Bands 10 and 11, leverages the difference in radiance
+        between the two channels to more accurately estimate LST by accounting for atmospheric
+        absorption differentials between them (Gonzalez et al., 2016).
+      </p>
+
+      <h2>4. Resampling: From 100 m to 30 m Grid Cells</h2>
+      <p>
+        Landsat TIRS captures thermal data at 100 m native resolution, while surface reflectance
+        bands are at 30 m. To integrate thermal data with other spectral bands, thermal bands are
+        resampled to the 30 m grid using bilinear or cubic convolution interpolation:
+      </p>
+      <ul>
+        <li><strong>Bilinear interpolation</strong> averages the four nearest 100 m pixels to
+        estimate the value of a 30 m pixel, smoothing transitions and preserving continuity in
+        temperature gradients.</li>
+        <li><strong>Cubic convolution</strong> uses 16 neighboring pixels per 30 m pixel,
+        producing sharper gradients than bilinear interpolation (Gao et al., 1996).</li>
+      </ul>
+      <p>
+        Resampling does not increase inherent spatial detail — it fills smaller grid cells with
+        approximated values. Sub-100 m thermal variations remain unresolved, potentially obscuring
+        localized hot spots within heterogeneous urban areas, especially in mixed-use landscapes
+        with varied emissivity.
+      </p>
+
+      <h2>5. Comparing Landsat LST with Ground-Based Air Temperature</h2>
+      <p>
+        Translating LST into estimates for near-surface air temperature requires specific
+        statistical approaches due to fundamental differences between air and surface
+        temperatures. Empirical relationships can be derived using regression models or machine
+        learning approaches (random forests, support vector machines) in conjunction with land
+        cover data, time of day, and solar angle (Zhou et al., 2019). Adjustments based on time of
+        day — typically early morning or late evening, when surface-air temperature differences
+        are minimized — can improve correlation. Urban areas with low vegetation and high
+        impervious surfaces tend to exhibit higher LST, correlating with elevated air temperatures
+        during daytime peaks but diverging at night due to differing cooling rates.
+      </p>
+
+      <h2>6. Limitations and Potential Enhancements</h2>
+      <p>
+        Despite resampling, Landsat's 30 m LST does not capture micro-scale temperature variations
+        within a single pixel that ground-based sensors can detect — a real constraint in complex
+        urban areas, where it can substantially underrepresent extreme surface temperatures.
+        Pairing Landsat LST with high-resolution data (drone or aerial thermal imagery, or
+        ground-based point sensors) can address this limitation. Landsat's 16-day revisit interval
+        also limits temporal resolution; multi-satellite fusion with MODIS or VIIRS offers a more
+        complete temperature profile through higher revisit frequency.
+      </p>
+
+      <h2>Conclusion</h2>
+      <p>
+        Landsat's LST data, derived through radiative transfer models, emissivity correction, and
+        resampling, offers valuable insight into spatial temperature distribution — with inherent
+        limitations when estimating air temperature in heterogeneous urban landscapes.
+        Improvements in resampling and integration with high-resolution datasets allow for more
+        precise temperature approximations and a better understanding of urban heat effects at
+        multiple scales.
+      </p>
+
+      <hr class="divider">
+
+      <h3 style="font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-4);">References</h3>
+      <ol class="refs">
+        <li>Chander, G., Markham, B. L., &amp; Heidebrecht, K. B. (2009). Summary of Current Radiometric Calibration of Landsat. <em>Remote Sensing of Environment</em>, 113(7), 1139–1144.</li>
+        <li>Gao, B. C., &amp; Goetz, A. F. H. (2006). Estimation of Land Surface Temperature from Landsat 8 Data Using Thermal Infrared Band Data. <em>IEEE Transactions on Geoscience and Remote Sensing</em>, 44(8), 2384–2395.</li>
+        <li>Gao, Y., Li, X., &amp; Li, J. (1996). Improvement of Spatial Resolution of Landsat Data Using Multi-Resolution Analysis. <em>International Journal of Remote Sensing</em>, 17(9), 1731–1744.</li>
+        <li>Gonzalez, A. M., &amp; Fuchs, J. (2016). Estimating Land Surface Temperature from Landsat 8 TIRS Data: Effects of Atmospheric Correction Methods on LST Accuracy. <em>Remote Sensing</em>, 8(5), 397.</li>
+        <li>Kumar, P., &amp; Stigter, C. J. (2012). Land Surface Temperature Estimation from Landsat Data: Validation with In-Situ Data. <em>Remote Sensing of Environment</em>, 117, 156–165.</li>
+        <li>Kumar, P., Stigter, C. J., &amp; Benard, G. (2013). Influence of Atmospheric Conditions on Land Surface Temperature Retrieved from Landsat 8 Data. <em>Remote Sensing</em>, 5(9), 4334–4347.</li>
+        <li>Wang, T., Zhang, Q., &amp; Wang, H. (2016). Retrieving Land Surface Temperature from Landsat 8 Data with Ground Validation: A Case Study of Urban Heat Island. <em>Remote Sensing</em>, 8(5), 412.</li>
+        <li>Zhou, Y., &amp; Wang, J. (2019). Mapping Land Surface Temperature Using Landsat 8 and Ground-Based Measurements. <em>International Journal of Applied Earth Observation and Geoinformation</em>, 80, 20–27.</li>
+      </ol>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <a href="/" class="footer-brand">Andrew McGallian</a>
+      <div class="footer-links">
+        <a href="/projects/">Projects</a>
+        <a href="/research/">Research</a>
+        <a href="/courses/">Courses</a>
+        <a href="/about.html">About</a>
+      </div>
+    </div>
+    <div class="footer-inner" style="margin-top:8px;">
+      <span class="footer-copy">University of Chicago &middot; M.S. Environmental Science</span>
+    </div>
+  </footer>
+
+</body>
+</html>

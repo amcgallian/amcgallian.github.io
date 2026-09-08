@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cloud Seeding Efficacy — Andrew McGallian</title>
-  <meta name="description" content="MS capstone: literature synthesis and quantitative reanalysis of historical cloud seeding studies.">
+  <title>No Evidence of Cloud Seeding Signatures in NEXRAD — Andrew McGallian</title>
+  <meta name="description" content="MS capstone: unsupervised anomaly detection on NEXRAD radar — a convolutional autoencoder and causal transformer — testing whether cloud seeding operations leave a detectable radar signature.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -26,56 +26,190 @@
   <header class="page-hero">
     <div class="page-hero-inner">
       <a href="/projects/" class="back-link">← Projects</a>
-      <p class="eyebrow">MS Capstone · Environmental Data Science</p>
-      <h1>Cloud Seeding Efficacy</h1>
+      <p class="eyebrow">MS Capstone · Spring 2026 · with Joshua Frank</p>
+      <h1>No Evidence of Cloud Seeding Signatures in the NEXRAD Radar Record</h1>
       <p class="subtitle">
-        A literature synthesis and quantitative reanalysis of historical cloud seeding studies,
-        evaluating what the evidence base actually supports.
+        An unsupervised anomaly-detection framework — a convolutional autoencoder feeding a causal
+        transformer — testing whether operational cloud seeding leaves a detectable signature in
+        the NEXRAD radar archive, across two contrasting case studies.
       </p>
       <div class="meta-row">
         <span class="meta-item">
-          <span class="label">Course</span>
-          ENSC 36300, Environmental Data Science Capstone
+          <span class="label">Mentor</span>
+          Jim Franke
         </span>
         <span class="meta-item">
-          <span class="label">Term</span>
-          Spring 2026
+          <span class="label">Case studies</span>
+          SNOWIE (Idaho) · Rainmaker (West Texas)
+        </span>
+        <span class="meta-item">
+          <span class="label">Compute</span>
+          UChicago Midway3 cluster
         </span>
       </div>
     </div>
   </header>
 
   <main class="site-main">
-    <div class="prose" style="max-width: 760px;">
+    <div style="display:grid; grid-template-columns: 1fr 290px; gap: 52px; align-items: start;">
 
-      <h2>Overview</h2>
-      <p>
-        For my MS capstone I evaluated the efficacy of cloud seeding — the practice of introducing
-        substances into clouds to encourage precipitation — by synthesizing the atmospheric science
-        literature and quantitatively reassessing the historical studies most often cited as evidence
-        it works.
-      </p>
-      <p>
-        The core problem in cloud seeding research is attribution: precipitation is highly variable,
-        seeding is usually applied opportunistically to storms already forming, and many
-        older studies lack the randomized controls needed to separate a seeding effect from
-        natural variability. Much of the project was spent evaluating which claims in the literature
-        actually hold up against that scrutiny, rather than taking published effect sizes at face value.
-      </p>
+      <div class="prose">
 
-      <div class="callout blue">
-        <p class="callout-title">What this involved</p>
+        <h2>Abstract</h2>
         <p>
-          Reviewing decades of published seeding trials and their statistical methodology, then
-          reassessing the strength of the evidence each provides — separating well-controlled
-          randomized studies from opportunistic or poorly controlled ones.
+          Cloud seeding has been practiced operationally for decades, yet evidence for its efficacy
+          remains difficult to isolate due to strong natural variability and non-random operational
+          targeting. This project investigates whether cloud seeding operations leave detectable
+          signatures in the NEXRAD radar record using an unsupervised anomaly detection framework.
+          Composite NEXRAD reflectivity mosaics were processed into 256×256 pixel tiled radar scenes
+          and encoded using a convolutional autoencoder. Temporal evolution in latent space was then
+          modeled using a causal transformer trained on non-event radar sequences.
         </p>
+        <p>
+          The framework was evaluated on two contrasting case studies: the SNOWIE winter orographic
+          cloud seeding experiment in Idaho and the Trans-Pecos Weather Modification Association
+          (TPWMA) operational convective seeding program in West Texas. The k-NN anomaly scorer
+          achieved AUROCs of 0.841 (SNOWIE) and 0.742 (Rainmaker); the transformer reached AUROC
+          0.9605 on Rainmaker test sequences. Despite this separation, results do not provide clean
+          evidence of cloud-seeding-specific signatures in the NEXRAD record.
+        </p>
+
+        <img src="/assets/makeitrain-domain-overview.png" alt="Map of the two study domains: SNOWIE in Idaho and Rainmaker in West Texas" style="width:100%; border:1px solid var(--border); border-radius:var(--radius); margin:20px 0 6px;">
+        <p class="figure-caption" style="margin-top:0;">Study domains — SNOWIE (Idaho) and Rainmaker/TPWMA (West Texas)</p>
+
+        <h2>Datasets</h2>
+        <p>
+          <strong>SNOWIE</strong> (Seeded and Natural Orographic Wintertime Clouds: The Idaho
+          Experiment) was a winter field campaign in the Payette River Basin, Idaho, 2016–2017 — one
+          of the first cloud seeding experiments in the US to employ a randomized treatment design
+          alongside close-range Doppler-on-Wheels radar, directly documenting silver iodide seeding
+          plume structures.
+        </p>
+        <p>
+          <strong>Rainmaker (TPWMA)</strong> is an operational warm-season convective cloud seeding
+          program run by the Trans-Pecos Weather Modification Association in West Texas, using
+          aircraft-mounted glaciogenic and hygroscopic flares under contract with agricultural and
+          ranching interests. Unlike SNOWIE, TPWMA seeding decisions are made in real time with no
+          randomized controls — operations records (flight timing, flare counts, target counties)
+          were compiled from publicly available Trans-Pecos operations reports.
+        </p>
+
+        <h2>Method</h2>
+
+        <h3>Data Processing</h3>
+        <p>
+          Radar mosaics were spatially tiled into 256×256 pixel patches (25% overlap), with tiles
+          below a minimum reflectivity threshold discarded as clear-sky frames. Training and test
+          sets were separated temporally to prevent leakage between background and seeding-event
+          periods — roughly 908K training / 1.7K test tiles for Rainmaker across 46 seeding days,
+          and 3.86M training / 7K test tiles for SNOWIE across 24 intensive observation periods.
+        </p>
+
+        <h3>Convolutional Autoencoder</h3>
+        <p>
+          A convolutional autoencoder learned compact 256-dimensional latent representations of
+          ordinary radar structure — four convolutional blocks (1→16→32→64→128 channels) into a
+          three-layer MLP, trained on background (non-seeding) frames only, so the model never saw
+          labeled examples of seeding effects.
+        </p>
+
+        <h3>k-NN Anomaly Scoring</h3>
+        <p>
+          Per-tile anomaly scores were computed via k-nearest-neighbor cosine distance in the
+          normalized latent space, using a FAISS index over training-set latent vectors. Tiles whose
+          radar structure differs from the training distribution — including seeding-event frames —
+          receive higher anomaly scores.
+        </p>
+
+        <h3>Causal Transformer</h3>
+        <p>
+          To model temporal radar evolution, latent vectors were organized into per-tile-position
+          time series and used to train a causal transformer — a decoder-only architecture in the
+          style of Vaswani et al. (2017), 4 layers, 4 attention heads, 256-dimensional embeddings.
+          The transformer received 12 consecutive latent vectors (one hour of 5-minute scans) as
+          context and predicted the 13th; anomaly score at inference is the cosine distance between
+          predicted and observed latent vectors.
+        </p>
+
+        <div class="callout blue">
+          <p class="callout-title">Results</p>
+          <p>
+            Within SNOWIE, the model could separate seeding-period tiles from ordinary background
+            radar (AUROC 0.841) but could not discriminate seeded from unseeded intensive observation
+            periods — unseeded control missions in fact scored higher on average, indicating the
+            model was responding to unusual storm morphology rather than seeding specifically.
+            Within Rainmaker, four structurally anomalous seeding days were flagged (exceeding
+            background p99.9 by 5–6×), and the causal transformer reached AUROC 0.9605 on one-hour
+            latent sequences — a substantially stronger separation than k-NN scoring alone, though
+            still confounded by TPWMA's practice of seeding storms that were already intensifying.
+          </p>
+        </div>
+
+        <h2>Discussion &amp; Conclusion</h2>
+        <p>
+          The results demonstrate both the utility and the limitations of unsupervised radar anomaly
+          detection for evaluating cloud seeding operations. Two constraints dominate: a
+          <strong>detectability limit</strong> — SNOWIE's seeded plumes were shallow, low-reflectivity
+          ice-crystal signatures likely below NEXRAD's effective sensitivity at operational range — and
+          an <strong>attribution limit</strong> — Rainmaker's seeding decisions are made in real time
+          based on already-favorable storm conditions, so the same conditions that motivate seeding
+          also explain the anomalous radar evolution that follows.
+        </p>
+        <p>
+          Overall, the study does not find clean evidence of a distinct NEXRAD-scale cloud seeding
+          signature. The absence of such a signature does not demonstrate the absence of cloud
+          seeding effects — it clarifies the observational and methodological constraints radar-based
+          evaluation operates under, and demonstrates unsupervised ML as a screening tool for
+          identifying meteorologically unusual events within large radar archives.
+        </p>
+
+        <h2>Capstone Write-up</h2>
+        <iframe class="poster-embed" src="/assets/makeitrain-writeup.pdf" title="No Evidence of Cloud Seeding Signatures in the NEXRAD Radar Record"></iframe>
+        <p class="poster-caption">"No Evidence of Cloud Seeding Signatures in the NEXRAD Radar Record" — McGallian &amp; Frank, Spring 2026 Capstone</p>
+        <p style="text-align:center; margin-top:-10px;">
+          <a href="/assets/makeitrain-writeup.pdf" download class="btn btn-secondary" style="font-size:12px;">Download PDF</a>
+        </p>
+
       </div>
 
-      <p>
-        <em>This page is being expanded with the actual methodology and findings from the capstone
-        write-up.</em>
-      </p>
+      <!-- Sidebar -->
+      <aside style="display:flex; flex-direction:column; gap:20px; position:sticky; top:84px;">
+
+        <div style="background:var(--paper-0); border:1px solid var(--border); border-radius:var(--panel-radius); padding:18px 20px;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; letter-spacing:0.10em; text-transform:uppercase; color:var(--ink-4); margin-bottom:14px;">Tech Stack</div>
+          <div class="tech-stack" style="flex-direction:column; gap:6px; margin:0;">
+            <div class="tech-item">Python · PyTorch</div>
+            <div class="tech-item">rasterio · NumPy</div>
+            <div class="tech-item">FAISS (k-NN search)</div>
+            <div class="tech-item">Convolutional autoencoder</div>
+            <div class="tech-item">Causal transformer</div>
+          </div>
+        </div>
+
+        <div style="background:var(--paper-0); border:1px solid var(--border); border-radius:var(--panel-radius); padding:18px 20px;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; letter-spacing:0.10em; text-transform:uppercase; color:var(--ink-4); margin-bottom:14px;">Results</div>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div>
+              <div style="font-family:'IBM Plex Mono',monospace; font-size:20px; font-weight:600; color:var(--ink-0);">0.841</div>
+              <div style="font-size:11px; color:var(--ink-4);">k-NN AUROC, SNOWIE</div>
+            </div>
+            <div>
+              <div style="font-family:'IBM Plex Mono',monospace; font-size:20px; font-weight:600; color:var(--ink-0);">0.742</div>
+              <div style="font-size:11px; color:var(--ink-4);">k-NN AUROC, Rainmaker</div>
+            </div>
+            <div>
+              <div style="font-family:'IBM Plex Mono',monospace; font-size:20px; font-weight:600; color:var(--ink-0);">0.9605</div>
+              <div style="font-size:11px; color:var(--ink-4);">transformer AUROC, Rainmaker</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:var(--paper-0); border:1px solid var(--border); border-radius:var(--panel-radius); padding:18px 20px;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; letter-spacing:0.10em; text-transform:uppercase; color:var(--ink-4); margin-bottom:10px;">Related</div>
+          <a href="/projects/aod/" style="font-size:13px; font-weight:500; color:var(--blue); display:block;">AOD Distribution Changes →</a>
+        </div>
+
+      </aside>
 
     </div>
   </main>
