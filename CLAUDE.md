@@ -27,11 +27,14 @@ This site pre-existed and was mostly AI-generated without a fact-check pass. Fou
 - **Wildfire model page said "Pacific Northwest."** His actual script (`ccc_landsat_processing.py`,
   on his `FELLOWSHIP` external drive) references a Contra Costa County, CA boundary file. Fixed
   everywhere.
-- **The cloud-seeding capstone page ("Make It Rain") described an entirely different project** — a
-  CNN autoencoder on NEXRAD radar data with a fabricated "Key Result" and a dead GitHub link. His
-  actual MS capstone (ENSC 36300) was a literature synthesis and quantitative reanalysis of historical
-  cloud seeding studies. Rewrote to match; the page now says it's still being expanded rather than
-  claiming a finished result that isn't real.
+- **The cloud-seeding capstone page ("Make It Rain") — RESOLVED 2026-09-09, read this before touching
+  that page.** It was rewritten twice. The original NEXRAD autoencoder description was flagged as
+  "an entirely different project" and replaced with a literature-synthesis/reanalysis description.
+  **That replacement was the error.** The real capstone write-up ("No Evidence of Cloud Seeding
+  Signatures in the NEXRAD Radar Record," ENSC 36300, Spring 2026, with Joshua Frank, mentored by
+  Jim Franke) is exactly the convolutional-autoencoder + causal-transformer anomaly-detection work.
+  `projects/make-it-rain/index.html` is now **correct** and matches `master-resume.md`. Do not
+  "fix" it back toward literature synthesis. The dead GitHub link was a separate, real problem.
 - **The Chicago Environmental Atlas card claimed DuckDB** for a storage-routing feature that exists in
   the code, but Andrew couldn't explain when asked directly (this project was built with heavy AI
   assistance and he doesn't remember the implementation details). Removed. **Do not re-add DuckDB, a
